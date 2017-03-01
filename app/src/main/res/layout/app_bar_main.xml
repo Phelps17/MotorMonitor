@@ -48,12 +48,14 @@
             android:elevation="2dp"
             android:layout_marginLeft="-10dp"
             android:layout_marginRight="-10dp"
-            android:layout_marginTop="-10dp">
+            android:layout_marginTop="-10dp"
+            android:id="@+id/module_thumbnail_scroller">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"/>
+                android:orientation="horizontal"
+                android:id="@+id/module_thumbnail_container"/>
         </HorizontalScrollView>
 
         <ScrollView

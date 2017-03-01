@@ -97,7 +97,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="b7d41b7f2714739bfaa66bf50108d4f34563603b">
+        sha1="f1f536abf016a51bf304e1f1e34774710e462483">
         <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ac6e613532f18370cdd673d0efd3226dc1dfbd1c/classes.dex" />
     </item>
     <item
@@ -151,7 +151,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="0e0c5eee79aeeff5d6517c1850cfb4b579eb46c2">
+        sha1="e9a63e894d2061598fd791e636ca4cd8c29e273d">
         <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9aaf065a8c9753b095e74e100e685c9b7b473cb7/classes.dex" />
     </item>
     <item
