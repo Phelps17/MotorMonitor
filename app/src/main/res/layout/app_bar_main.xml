@@ -55,23 +55,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:id="@+id/module_thumbnail_container"/>
+                android:id="@+id/module_thumbnail_container">
+
+                <include
+                    layout="@layout/module_thumb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+                <include
+                    layout="@layout/module_thumb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+                <include
+                    layout="@layout/module_thumb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+                <include
+                    layout="@layout/module_thumb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+                <include
+                    layout="@layout/module_thumb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+
+            </LinearLayout>
         </HorizontalScrollView>
 
-        <ScrollView
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:drawable/dialog_holo_light_frame"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="-15dp"
-            android:layout_marginBottom="-10dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
-        </ScrollView>
+            android:layout_marginBottom="-10dp"/>
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
