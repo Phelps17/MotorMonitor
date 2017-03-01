@@ -13,7 +13,10 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        showListView();
     }
 
     @Override
@@ -102,15 +107,18 @@ public class MainActivity extends AppCompatActivity
         modules.add(new Module("Back Pump Valve"));
         modules.add(new Module("Office AC Unit"));
 
-        ModuleThumbnailAdapter adapter = new ModuleThumbnailAdapter(this, modules);
-
-        //Set listview adapter
+        // Set listview adapter
         LinearLayout sideScroller = (LinearLayout) findViewById(R.id.module_thumbnail_container);
         sideScroller.removeAllViewsInLayout();
+        LayoutInflater inflater = LayoutInflater.from(this);
 
-        //sideScroller.setAdapter(adapter);
+        // Populate module list from database here
+        for (Module module : modules) {
+            View view  = inflater.inflate(R.layout.module_thumb, sideScroller, false);
 
-        //TODO populate module list from database here
-
+            // set item content in view
+            ((TextView) view.findViewById(R.id.moduleNameTextView)).setText(module.getName());
+            sideScroller.addView(view);
+        }
     }
 }

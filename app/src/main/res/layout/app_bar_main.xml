@@ -49,44 +49,14 @@
             android:layout_marginLeft="-10dp"
             android:layout_marginRight="-10dp"
             android:layout_marginTop="-10dp"
-            android:id="@+id/module_thumbnail_scroller">
+            android:id="@+id/module_thumbnail_scroller"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:id="@+id/module_thumbnail_container">
-
-                <include
-                    layout="@layout/module_thumb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"/>
-                <include
-                    layout="@layout/module_thumb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"/>
-                <include
-                    layout="@layout/module_thumb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"/>
-                <include
-                    layout="@layout/module_thumb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"/>
-                <include
-                    layout="@layout/module_thumb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"/>
 
             </LinearLayout>
         </HorizontalScrollView>
@@ -98,7 +68,8 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="-15dp"
-            android:layout_marginBottom="-10dp"/>
+            android:layout_marginBottom="-10dp">
+        </ListView>
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
