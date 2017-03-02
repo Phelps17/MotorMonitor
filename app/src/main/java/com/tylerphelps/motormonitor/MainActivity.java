@@ -81,19 +81,19 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            Toast.makeText(this, "Home selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_sys_info) {
-
+            Toast.makeText(this, "System info selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_realtime) {
-
+            Toast.makeText(this, "View realtime selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_add_module) {
-
+            Toast.makeText(this, "Add module selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_remove_module) {
-
+            Toast.makeText(this, "Remove module selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_settings) {
-
+            Toast.makeText(this, "Settings selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_send) {
-
+            Toast.makeText(this, "Send Feedback selected.", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -121,6 +121,13 @@ public class MainActivity extends AppCompatActivity
             // set item content in view
             ((TextView) view.findViewById(R.id.moduleNameTextView)).setText(module.getName());
             sideScroller.addView(view);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getBaseContext(), "Module Selected from Scroller.", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }
