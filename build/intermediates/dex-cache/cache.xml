@@ -75,6 +75,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/TylerPhelps/.gradle/caches/modules-2/files-2.1/de.greenrobot/greendao/2.1.0/9414c1d4578673dac83a23119009624fd695726d/greendao-2.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9414c1d4578673dac83a23119009624fd695726d">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/greendao-2.1.0_0d84f68de7a21bfb5201a82c0fb83196b4b7b349/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.0.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -97,7 +106,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="d7d5e3967a9b82d3b06dc49ade9d925e2fbbf687">
+        sha1="d57af4e4781fc5c99597693bad982d950ff9a0cd">
         <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ac6e613532f18370cdd673d0efd3226dc1dfbd1c/classes.dex" />
     </item>
     <item
@@ -151,7 +160,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="58abd8818ea576585386820edac7938ff581bd9f">
+        sha1="762851e63b9cf8c81bc8bced7f16556c61a686ea">
         <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9aaf065a8c9753b095e74e100e685c9b7b473cb7/classes.dex" />
     </item>
     <item
