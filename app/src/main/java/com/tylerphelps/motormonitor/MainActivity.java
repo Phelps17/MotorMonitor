@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         showListView();
+        displayModuleScreens(null);
     }
 
     @Override
@@ -129,5 +131,22 @@ public class MainActivity extends AppCompatActivity
                 }
             });
         }
+    }
+
+    private void  displayModuleScreens(Module module) {
+        ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
+        verticleScroller.removeAllViewsInLayout();
+        ArrayList<Integer> test = new ArrayList<Integer>();
+        test.add(1);
+        test.add(2);
+        test.add(3);
+
+        ModuleScreenAdapter adapter = new ModuleScreenAdapter(this, test);
+
+        //Set listview adapter
+        ListView listView = (ListView) findViewById(R.id.module_screen_scroller);
+        listView.setAdapter(adapter);
+
+        adapter.setNotifyOnChange(true);
     }
 }

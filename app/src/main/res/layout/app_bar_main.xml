@@ -68,7 +68,8 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="-15dp"
-            android:layout_marginBottom="-10dp">
+            android:layout_marginBottom="-10dp"
+            android:id="@+id/module_screen_scroller">
         </ListView>
     </LinearLayout>
 
