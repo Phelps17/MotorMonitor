@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import java.util.Random;
 
 /**
  * Created by TylerPhelps on 3/4/17.
@@ -38,13 +39,20 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
             convertView.setMinimumHeight(parent.getMeasuredHeight());
 
             GraphView graph = (GraphView) convertView.findViewById(R.id.graph);
+            Random random = new Random();
 
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                    new DataPoint(0, 1),
-                    new DataPoint(1, 5),
-                    new DataPoint(2, 3),
-                    new DataPoint(3, 2),
-                    new DataPoint(4, 6)
+                    new DataPoint(0, random.nextInt(11)),
+                    new DataPoint(1, random.nextInt(11)),
+                    new DataPoint(2, random.nextInt(11)),
+                    new DataPoint(3, random.nextInt(11)),
+                    new DataPoint(4, random.nextInt(11)),
+                    new DataPoint(5, random.nextInt(11)),
+                    new DataPoint(6, random.nextInt(11)),
+                    new DataPoint(7, random.nextInt(11)),
+                    new DataPoint(8, random.nextInt(11)),
+                    new DataPoint(9, random.nextInt(11)),
+                    new DataPoint(10, random.nextInt(11))
             });
             graph.addSeries(series);
 
