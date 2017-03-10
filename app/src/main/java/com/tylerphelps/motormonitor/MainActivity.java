@@ -138,10 +138,9 @@ public class MainActivity extends AppCompatActivity
         ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
         verticleScroller.removeAllViewsInLayout();
 
-        verticleScroller.setOnScrollListener(new OnScrollListener() {
+        /*verticleScroller.setOnScrollListener(new OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView aview, int scrollState) {
-                // TODO Auto-generated method stub
                 if (scrollState == SCROLL_STATE_IDLE) {
                     View itemView = aview.getChildAt(0);
                     int top = Math.abs(itemView.getTop());
@@ -161,7 +160,6 @@ public class MainActivity extends AppCompatActivity
 
                     @Override
                     public void run() {
-                        // TODO Auto-generated method stub
                         viewF.smoothScrollBy(scrollByF, 200);
                     }
                 });
@@ -170,16 +168,15 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem,
                                  int visibleItemCount, int totalItemCount) {
-                // TODO Auto-generated method stub
+
 
             }
-        });
+        });*/
 
         //Adapter logic
         ArrayList<Integer> test = new ArrayList<Integer>();
         test.add(1);
         test.add(2);
-        test.add(3);
 
         ModuleScreenAdapter adapter = new ModuleScreenAdapter(this, test);
         verticleScroller.setAdapter(adapter);
