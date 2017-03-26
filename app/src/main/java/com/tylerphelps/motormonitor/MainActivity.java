@@ -87,12 +87,8 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, "Home selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_sys_info) {
             Toast.makeText(this, "System info selected.", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_realtime) {
-            Toast.makeText(this, "View realtime selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_add_module) {
             Toast.makeText(this, "Add module selected.", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_remove_module) {
-            Toast.makeText(this, "Remove module selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_settings) {
             Toast.makeText(this, "Settings selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_send) {
@@ -136,50 +132,9 @@ public class MainActivity extends AppCompatActivity
 
     private void  displayModuleScreens(Module module) {
         ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
-        verticleScroller.removeAllViewsInLayout();
 
-        /*verticleScroller.setOnScrollListener(new OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView aview, int scrollState) {
-                if (scrollState == SCROLL_STATE_IDLE) {
-                    View itemView = aview.getChildAt(0);
-                    int top = Math.abs(itemView.getTop());
-                    int bottom = Math.abs(itemView.getBottom());
-                    int scrollBy = top >= bottom ? bottom : -top;
-                    if (scrollBy == 0) {
-                        return;
-                    }
-                    smoothScrollDeferred(scrollBy, (ListView)aview);
-                }
-            }
-
-            private void smoothScrollDeferred(final int scrollByF,
-                                              final ListView viewF) {
-                final Handler h = new Handler();
-                h.post(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        viewF.smoothScrollBy(scrollByF, 200);
-                    }
-                });
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem,
-                                 int visibleItemCount, int totalItemCount) {
-
-
-            }
-        });*/
-
-        //Adapter logic
-        ArrayList<Integer> test = new ArrayList<Integer>();
-        test.add(1);
-        test.add(2);
-
-        ModuleScreenAdapter adapter = new ModuleScreenAdapter(this, test);
-        verticleScroller.setAdapter(adapter);
-        adapter.setNotifyOnChange(true);
+        ModuleScreenController msc = new ModuleScreenController(verticleScroller, null, getApplicationContext());
+        msc.updateListView();
     }
 }
+
