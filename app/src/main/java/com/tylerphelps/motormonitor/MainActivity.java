@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,9 +17,8 @@ import android.widget.Toast;
 import android.view.LayoutInflater;
 import android.view.View;
 import java.util.ArrayList;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
-import android.os.Handler;
+import android.content.Intent;
+import android.net.Uri;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_settings) {
             Toast.makeText(this, "Settings selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_send) {
-            Toast.makeText(this, "Send Feedback selected.", Toast.LENGTH_SHORT).show();
+            sendFeedbackEmail();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -135,6 +133,16 @@ public class MainActivity extends AppCompatActivity
 
         ModuleScreenController msc = new ModuleScreenController(verticleScroller, null, getApplicationContext());
         msc.updateListView();
+    }
+
+    private void sendFeedbackEmail() {
+        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+        emailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        emailIntent.setType("vnd.android.cursor.item/email");
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"phelps3@wisc.edu"});
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Motor Monitor Feedback");
+        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "\n\nSent from MotorMonitor Android Application");
+        startActivity(Intent.createChooser(emailIntent, "Send mail using..."));
     }
 }
 
