@@ -17,10 +17,10 @@ import java.util.zip.Inflater;
 
 public class ModuleScreenController {
     ListView listview;
-    Module module;
+    SensorModule module;
     Context context;
 
-    ModuleScreenController(ListView listView, Module module, Context context) {
+    ModuleScreenController(ListView listView, SensorModule module, Context context) {
         this.listview = listView;
         this.module = module;
         this.context = context;

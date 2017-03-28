@@ -5,7 +5,7 @@ package com.tylerphelps.motormonitor;
  */
 
 public class Module {
-    public String getName() {
+   /* public String getName() {
         return name;
     }
 
@@ -37,5 +37,5 @@ public class Module {
         this.temp = 0;
         this.vibrations = 0;
     }
-
+*/
 }

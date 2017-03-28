@@ -1,6 +1,5 @@
 package com.tylerphelps.motormonitor;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,12 +17,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import java.util.ArrayList;
 import android.content.Intent;
-import android.net.Uri;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +62,6 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -99,12 +93,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showListView() {
-        ArrayList<Module> modules = new ArrayList<>();
-        modules.add(new Module("Main 1"));
-        modules.add(new Module("Main 2"));
-        modules.add(new Module("Test 1"));
-        modules.add(new Module("Back Pump Valve"));
-        modules.add(new Module("Office AC Unit"));
+        //SensorModule(Long id, String access_name, String access_passcode, String viewable_name, String details, long sensorModuleId)
+        ArrayList<SensorModule> modules = new ArrayList<>();
+        modules.add(new SensorModule((long) 1, "a", "a", "Main 1", "", (long) 1));
+        modules.add(new SensorModule((long) 2, "b", "b", "Main 2", "", (long) 2));
+        modules.add(new SensorModule((long) 3, "c", "c", "Test 1", "", (long) 3));
+        modules.add(new SensorModule((long) 4, "d", "d", "Back Pump Valve", "", (long) 4));
+        modules.add(new SensorModule((long) 5, "e", "e", "Office AC Unit", "", (long) 5));
 
         // Set listview adapter
         LinearLayout sideScroller = (LinearLayout) findViewById(R.id.module_thumbnail_container);
@@ -112,11 +107,11 @@ public class MainActivity extends AppCompatActivity
         LayoutInflater inflater = LayoutInflater.from(this);
 
         // Populate module list from database here
-        for (Module module : modules) {
+        for (SensorModule module : modules) {
             View view  = inflater.inflate(R.layout.module_thumb, sideScroller, false);
 
             // set item content in view
-            ((TextView) view.findViewById(R.id.moduleNameTextView)).setText(module.getName());
+            ((TextView) view.findViewById(R.id.moduleNameTextView)).setText(module.getViewable_name());
             sideScroller.addView(view);
 
             view.setOnClickListener(new View.OnClickListener() {

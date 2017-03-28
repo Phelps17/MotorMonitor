@@ -12,9 +12,9 @@ import java.util.ArrayList;
  * Created by TylerPhelps on 2/28/17.
  */
 
-public class ModuleThumbnailAdapter extends ArrayAdapter<Module> {
+public class ModuleThumbnailAdapter extends ArrayAdapter<SensorModule> {
 
-    public ModuleThumbnailAdapter(Context context, ArrayList<Module> modules) {
+    public ModuleThumbnailAdapter(Context context, ArrayList<SensorModule> modules) {
         super(context, R.layout.module_thumb, modules);
     }
 
@@ -26,7 +26,7 @@ public class ModuleThumbnailAdapter extends ArrayAdapter<Module> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Module module = getItem(position);
+        SensorModule module = getItem(position);
 
         //Create view holder for efficiency to cut down on inflating if reusing same layout
         //DOES NOT ALTERNATE COLORS IN LISTVIEW YET
@@ -46,14 +46,14 @@ public class ModuleThumbnailAdapter extends ArrayAdapter<Module> {
         }
 
         //Fill in view holder
-        if(module == null || module.getName() == null) {
+        if(module == null || module.getViewable_name() == null) {
             viewHolder.name.setText("Module Load Error");
             viewHolder.vibration.setText("N/A");
             viewHolder.temperature.setText("--°F");
         } else {
-            viewHolder.name.setText(module.getName());
-            viewHolder.vibration.setText(module.getTemp()+"K");
-            viewHolder.temperature.setText(module.getTemp() + "°F");
+            viewHolder.name.setText(module.getViewable_name());
+            viewHolder.vibration.setText("35.5K");
+            viewHolder.temperature.setText("106.67°F");
         }
 
         return convertView;
