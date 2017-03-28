@@ -94,12 +94,13 @@ public class MainActivity extends AppCompatActivity
 
     private void showListView() {
         //SensorModule(Long id, String access_name, String access_passcode, String viewable_name, String details, long sensorModuleId)
-        ArrayList<SensorModule> modules = new ArrayList<>();
-        modules.add(new SensorModule((long) 1, "a", "a", "Main 1", "", (long) 1));
-        modules.add(new SensorModule((long) 2, "b", "b", "Main 2", "", (long) 2));
-        modules.add(new SensorModule((long) 3, "c", "c", "Test 1", "", (long) 3));
-        modules.add(new SensorModule((long) 4, "d", "d", "Back Pump Valve", "", (long) 4));
-        modules.add(new SensorModule((long) 5, "e", "e", "Office AC Unit", "", (long) 5));
+        DatabaseController dc = new DatabaseController(this.getApplicationContext());
+        /*dc.addSensorModule(new SensorModule((long) 1, "a", "a", "Main 1", "", (long) 1));
+        dc.addSensorModule(new SensorModule((long) 2, "b", "b", "Main 2", "", (long) 2));
+        dc.addSensorModule(new SensorModule((long) 3, "c", "c", "Test 1", "", (long) 3));
+        dc.addSensorModule(new SensorModule((long) 4, "d", "d", "Back Pump Valve", "", (long) 4));
+        dc.addSensorModule(new SensorModule((long) 5, "e", "e", "Office AC Unit", "", (long) 5));*/
+        ArrayList<SensorModule> modules = new ArrayList<>(dc.getSensorModules());
 
         // Set listview adapter
         LinearLayout sideScroller = (LinearLayout) findViewById(R.id.module_thumbnail_container);
