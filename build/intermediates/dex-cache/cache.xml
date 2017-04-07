@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/55b58fd10d64ba5f63140dfb9b98cd622133be2f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="59a16a4a42d25b2c243dd1e8aea87d06895b4a06">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f8c33049dae1ab1604cdf5067aa8ce4846319c26/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/72db6635836065174c757618f9234a6005fb7e79/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b1acf13f1b7d8232af78a30833f9a966d1394c84">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e139d578a42ec965d992398233c309b2b3d1e35f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/31e0acaed8fc461448abd196e6db111011e24b48/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e454c414a069241ee08444d187f2dd3a702596b5">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_89c08402e27ef88797b0ec79ed47373887adbe2f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/d16caf28cabf4f34a0a9fd91ffbcb4d07002d4e5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="88848548ab56d4fbf3d2d1b0c85bf1ff9b4c1f4b">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7a9a402d5f63e33b8dafa1a2c40918f6af5e05ec/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/34cee6ac31ea14ded86fdcee94ce7fa7fe6aff37/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4b6d9b70f93bbeb872d0948bc064ae3f3f2bcbac">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_353f8864bd24b6a25a1bb7219eb5d412577834cb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/6af86e5c8e33882d436d58a7ac1f409a50d0bc0c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a440fb3fec30ff925e9f601cc458fb6671834cb2">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_03a8f1891bd1a8271e951d3aececaa0a323eb91a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/9de3882f3b6782ce27a070ae344f7f72207f98d5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="72eacac37fc64e95d53abd2a041bf81a952d8615">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9ada4ef6fb55d64edd8381d8c44ebd74b61a09cc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/f89ba91f933be1ea26fff1160d5a628247b9c317/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5e04c0b3683ca45b343284d93e5594b5f9044551">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_75725110092ad45a924248b79a5d577c83f9f9e9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/0823a7c89315cb5a16e24a33934ab759dbf543a4/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="58c9f5ee817fdb8b658fd7455fadfb74119f7ee9">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_700c5a6d3540eaa8eaca99cccb991e6c45ae34bb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/b9a1467d27cd9dc59713e4b54f861307cf695793/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c10df7344e31161852c20bb8143fc37319aa10ec">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_894b537331c9b9754241e444bcb901d37b1b2eb1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/fb2dc939d6be77859d6075d981e7f85aa572e9f8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="670df81539ab71918d49b186598b7eff08ef6563">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0da4e7e0b2885b3a274cbf019fab25a12f0e44da/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/63c912628787447b48406a15f4a38d151fa1b62a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3b7173b3df4c7029699919414400041f64519e34">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ccafca635c44c1725b8f5797fbffa27ca1ec4d63/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/3071c01cc040ef659a71a9acc0606518ec76abb5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6bc41d9d6fd12d2ef23c785a259011001f4a1a5b">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_03b4d5edcd409e0c06a782340f295081b039ebf8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/ae10e7142c162c435d9e40ab49bdf3060f20df3c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="18b5697c65c4fe5b7381613b8b8ae9ac52e26fa7">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8d6e4fb8da3d17f5d4094c56906a356e7f192ed4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/91cc08dd38bddb6fd55d1ecd7def8d1a7317712a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="dab6944860c986980dcc6002a5ca2f127b587317">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_01668f78ac72f7ab3a97be50118691c1373c4ef9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/07ff522d9d5f09a08b25f47121a9729a7984af6e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d463d8eec1e6c1feef2cec6675ccb47e37c12ee1">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_681388d0696c0c2650c16f377b4fae797ce970fd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/1f7a8bf5fd251b1d7baef2cd64289635c7491bf0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="dd51b31890731591729f046d7a09c4fe4e483ed1">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_da81d7cd5a4982707583ece862277f26c0656b74/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/237049abb7c9b990f43a90d60811d82efa749997/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0ad33eb600f3d80bdff5ce355c90d5533ade652a">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0ed18ebb4b6f5b60b6ba6b3c31904e50ba2b7f75/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/b1eaa02506c0c33afee44c1a434b72e410ab47c4/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7bc6ea2bcfd6de4b7085e0f3a01616c5c8e0e2ad">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3c30bfb425612468fb9e6e8bd00c28e643554d61/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/86ee7b62043da73f056fae481e2343395fb53be5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b15f898c9047f9d612a63000126b485dd024eaac">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0d796346e8f3d3243abd2a9d8b382e984b25f453/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/caa5db0b7273ebe51f04a69f4facf43402903959/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c05f058b32829164ef07f5d20c22d09c42cbb1bd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9aaf065a8c9753b095e74e100e685c9b7b473cb7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/5559ff58844bf801c7ee4e92aeae0c3f8ebfdd30/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e6e2251f3d3abf4eecd6bf6919d41fc7af497852">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_cb76e6378b21b7453af9256d3a52ad0c71ca5b75/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/323fccc1e92351eee640954cf482afa6501255c3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8ce5e7a4a146dddd1d9e66b09c714a6c149916d8">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_23c84ab3a5c09ae1b1bc4e0182a42415def54080/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/3674e3d2fb8cec0a97809980f8a872a5a8165618/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="461e4257888c25ec05abcd91e758fe7f4949230a">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0fb99d470e72322c974a104e6f5cbc7d8db54912/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/f7d3a7cf9366bcc06e598855744220dd21dfdb25/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="954697ee6ea7bdd596babf4f70e8b7a17ca7649e">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c180e5707443da75a3b58147fc0b2a6e29ebf7ae/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/2525cc9020287df86c9a505474fa89fbe66274df/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="618485fef3ebe12127f7622abbc9b5b39057b5c2">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_798765a1ecec27ea2ad0055b52a28570ffff5c2e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/7645633bf6fdd8a5e224be69276caf94cac4b0bf/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d49118ba67a101c4895f0581f17142cba85b330b">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4c6c1a7527440ee113efffc17187ab321dde65cf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/8bfa422a73d010babcc8ac82a9ffa928126766c7/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c8f5d56f8f8a287c95e02c542baade138a378048">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_773ff97665fd1fcc82aed4fe825f980ef8cc0b1b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/ef2fa0194b3c61b0fb612ea419313b78a344632f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7ea53c4458b80e8ea71f7fd6831fa184c501377b">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ea561c328d33617dbb84c3be520adb5345f1a755/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/85a7d8eff14bb3056354c37303a3329a18c034ba/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ba47b210d36301e237ccfea860eaada04590f12a">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_653d57a86ab5198be979701d148e0f6fac815699/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/caa5db0b7273ebe51f04a69f4facf43402903959/output/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.0.0_03d248aa361ce354734c737678f417bc149a43f2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/28187dde7308b9ac348ecd6a9c8932823b5f9698/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="736d8893fb702f128a153c9d87c9c29724d37872">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8e9d5185bf1aea7fdfe462d9f81a67156691b483/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/dc850bd2c5517e62aed20b289807ea6eff23aa47/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="03829a2618892d438a1f59c6286699ca1f476e93">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_fa7afc5291257f5e4d143e5b5859b52ed2671700/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/e6e00129b09ec0586501676110b7e4680cb736ad/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0b060160e7daee343f5315b3da91b0ff2d7eed89">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_68433776d560e6954e16eca0c38fe44d8b1d0535/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/13c210e2002c8cdb967bc4c120b7c02eb3a441ad/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a432629397351d3ec7f27a23d258b229b81af08f">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e0a2273fcad40b9a01549afc4799f53881c140c5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/add38779ca81957787cf3f249ee385d626c6ac65/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="34762013d39dbe6c656050589c44e8b61b9a2c5d">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_16852e946a20366ac113a342b56971b948c087c5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/43f8f423d87142cb7d8429b97a1b423b48c61ef6/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="dd763e0269f2854f5828ae62dd968b80bff6a0db">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_1646b6308263813c97b06398111b2b73142a5aae/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/4a3c205c19cead42df30d9974f0fdc63fc0a96d6/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9d48baf96c7e187991a9befa833bebd181960a9">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8c0f49a27fc05933ff504f8fd7907e08fe182f7b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/3ccad4872e7ac52fdcee92e52d26e6ef4394057b/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8197651ce1af4d89b47f4545cc720bc4f8611e7d">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_81f46da2bc535fcda3fe1808898ecfd5c70ba81b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/e43f4480599c1f6f04fd812dd823901347330c99/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="147edbec6bcea71fd675ecc63cae3319637ec2b4">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f24811899accd4bdbb5b1e93aeac322f8c72e3a6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/be444c7d594a3b43443591b5c0ea5abdd0ea5d24/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e5e8e535d15834e824817bdf5370556f62b4b2a5">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_622cb99f9f0a48fd142d52ee68d922e65230a652/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/9fe12ca054d0489824c7930f64dade200e1b9728/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e35002351f2d415093a9b564652d4b56be6a0593">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_1c96c2a362bc36114a807d5867c596f65e1f93f1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7dfc64f6f13576718fe56c32140abee6f4e8e893">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_ac6e613532f18370cdd673d0efd3226dc1dfbd1c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/0b65c7b6b0e575a5ff37498824687c2dbbacc003/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4b630471536351be7c3c3100735c75b7ad2cbd84">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3f2d8b66c6a73b54eeb569809804c07d9dad5fa1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/41eda25b1ded1ec494ab2d53bd200058a5681c47/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8a36d229011e75f0caef408e1adf0d3fd4d94e02">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_98131b4752bc594d50d5907e9254128799d3755f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/2b10219bfaa727ec5219f5624260ea93ca24789a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="84bf369090a8f7e293817efbd6ccf31ada1be32b">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_75e72a003def5fd24dacf04a4f783c0634564039/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/8cb961315d5298bf20fb12faf1b025e25e8c7aba/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3dee4ce5844d39d843d503fb8fe04e51e5bfffac">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_406c29ff103cfac6df4d90e2d5e156b1019c302f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/26c46bc2aa8cc87eff5fbcd0040588b153349032/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="98e97da89d4df8e2f6eba63498d3d46a587372f2">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_38bc87d4c1c776d84a41f831871597cb0d194fc8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/e1ddfc1382222d094f2657ee89c3ac9d85364c4b/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ece40b09e9d4d488bc270cf6af5a9af73bc1cfa3">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3799586249033f69aa26e85cdd2f074769ecc075/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/74c96731ea1b47d87b820746682b28e7ede4c930/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4348dd26d83b56c2058b768222c3271bce911724">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4da5b8838076d9db20a5ca1ebee804de89b849f8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/6783b9a9f4e7afa58a597230f67a6530b17fdf3e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0e4d53465cc141bec58f18a894e4c4e80633fa32">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d26baa3b90cee9b8a5abeeb58636a8c36561eac4/classes.dex" />
+    </item>
+
+</items>

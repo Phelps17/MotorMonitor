@@ -10,8 +10,6 @@ public class AddModuleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_module_screen);
-
-        SurfaceView cameraView = (SurfaceView)findViewById(R.id.camera_view);
     }
 
 }

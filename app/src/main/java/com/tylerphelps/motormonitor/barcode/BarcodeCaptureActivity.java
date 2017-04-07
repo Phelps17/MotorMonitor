@@ -37,15 +37,16 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.elock.tylerphelps.elock.R;
-import com.elock.tylerphelps.elock.camera.CameraSource;
-import com.elock.tylerphelps.elock.camera.CameraSourcePreview;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+
+import com.tylerphelps.motormonitor.R;
+import com.tylerphelps.motormonitor.camera.CameraSource;
+import com.tylerphelps.motormonitor.camera.CameraSourcePreview;
 
 import java.io.IOException;
 
@@ -72,7 +73,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        setContentView(R.layout.activity_add_lock);
+        setContentView(R.layout.add_module_screen);
 
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
 
@@ -126,8 +127,8 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         // graphics for each barcode on screen.  The factory is used by the multi-processor to
         // create a separate tracker instance for each barcode.
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(context)
-                .setBarcodeFormats(Barcode.ALL_FORMATS)
-                .build();
+                .setBarcodeFormats(0)
+                .build(); // 0 = ALL_FORMATS
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(this);
         barcodeDetector.setProcessor(new MultiProcessor.Builder<>(barcodeFactory).build());
 

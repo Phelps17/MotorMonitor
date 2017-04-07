@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import java.util.ArrayList;
 import android.content.Intent;
+import com.tylerphelps.motormonitor.barcode.BarcodeCaptureActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -140,7 +141,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void addNewModule() {
-
+        Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
+        Toast.makeText(getBaseContext(),"Scan Barcode to Add New Module",
+                Toast.LENGTH_LONG).show();
+        startActivityForResult(intent, 1);
     }
 }
 
