@@ -75,6 +75,15 @@ public class DatabaseController {
         return returnList;
     }
 
+    public long getNextSensorModuleId() {
+        List<SensorModule> modules = getSensorModules();
+        if (modules.size() == 0) {
+            return 0;
+        }
+
+        return modules.get(modules.size()-1).getId()+1;
+    }
+
     public void closeDatabase()
     {
         Log.d("DB", "close");

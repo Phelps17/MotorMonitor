@@ -19,7 +19,7 @@
         android:layout_marginBottom="-20dp"/>
 
     <TextView
-        android:text="30.7K"
+        android:text="N/A"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/vibrationTextView"
@@ -30,7 +30,7 @@
         android:layout_marginTop="-10dp"/>
 
     <TextView
-        android:text="86.34°F"
+        android:text="--°F"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/temperatureTextView"

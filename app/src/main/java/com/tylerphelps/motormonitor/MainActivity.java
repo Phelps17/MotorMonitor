@@ -1,5 +1,6 @@
 package com.tylerphelps.motormonitor;
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -7,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -17,10 +19,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import java.util.ArrayList;
 import android.content.Intent;
+
+import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.vision.barcode.Barcode;
 import com.tylerphelps.motormonitor.barcode.BarcodeCaptureActivity;
+
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private DatabaseController dc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +45,10 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        this.dc = new DatabaseController(this);
 
-        showListView();
-        displayModuleScreens(null);
+        showThumbnailScroller();
+        showModuleScreens(null);
     }
 
     @Override
@@ -91,9 +100,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void showListView() {
-        //SensorModule(Long id, String access_name, String access_passcode, String viewable_name, String details, long sensorModuleId)
-        DatabaseController dc = new DatabaseController(this.getApplicationContext());
+    private void showThumbnailScroller() {
         /*dc.addSensorModule(new SensorModule((long) 1, "a", "a", "Main 1", "", (long) 1));
         dc.addSensorModule(new SensorModule((long) 2, "b", "b", "Main 2", "", (long) 2));
         dc.addSensorModule(new SensorModule((long) 3, "c", "c", "Test 1", "", (long) 3));
@@ -123,7 +130,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void  displayModuleScreens(SensorModule module) {
+    private void  showModuleScreens(SensorModule module) {
         ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
 
         ModuleScreenController msc = new ModuleScreenController(verticleScroller, null, getApplicationContext());
@@ -145,6 +152,72 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(getBaseContext(),"Scan Barcode to Add New Module",
                 Toast.LENGTH_LONG).show();
         startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == CommonStatusCodes.SUCCESS) {
+                if (data != null) {
+                    Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
+                    Point[] p = barcode.cornerPoints;
+
+                    String barcodeData = barcode.displayValue;
+                    Log.d("QR CODE SCANNER", barcodeData);
+
+                    try {
+                        JSONObject json = new JSONObject(barcodeData);
+                        long newId = 0;
+                        try {
+                            //(Long id, String access_name, String access_passcode,
+                            // //String viewable_name, String details, long sensorModuleId)
+                            SensorModule newModule = new SensorModule(newId, json.getString("access_name"),
+                                    json.getString("access_passcode"), json.getString("viewable_name"),
+                                    "", json.getLong("sensor_module_id"));
+
+                            try {
+                                newModule.setId(this.dc.getNextSensorModuleId());
+                                this.dc.addSensorModule(newModule);
+                                Toast.makeText(getBaseContext(),"New Sensor Module Added!",
+                                        Toast.LENGTH_SHORT).show();
+
+                                try {
+                                    showThumbnailScroller();
+                                }
+                                catch (Exception e) {
+                                    Toast.makeText(getBaseContext(),"Error Refreshing",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            catch (Exception e) {
+                                //database errors
+                                Toast.makeText(getBaseContext(),"Error: Could Not Add New Sensor Module",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        catch (Exception e) {
+                            //invalid format
+                            Toast.makeText(getBaseContext(),"Error: Invalid QR Code Data",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    catch (Exception e) {
+                        //couldnt parse json data
+                        Toast.makeText(getBaseContext(),"Error: Invalid QR Code Data",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Log.e("QR CODE SCANNER", "Nothing Captured");
+                }
+            }
+            else {
+                Log.e("QR CODE SCANNER", "ERROR");
+            }
+        }
+        else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
 
