@@ -77,10 +77,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             Toast.makeText(this, "Home selected.", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_sys_info) {
-            Toast.makeText(this, "System info selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_add_module) {
-            Toast.makeText(this, "Add module selected.", Toast.LENGTH_SHORT).show();
+            addNewModule();
         } else if (id == R.id.nav_settings) {
             Toast.makeText(this, "Settings selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_send) {
@@ -118,13 +116,13 @@ public class MainActivity extends AppCompatActivity
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getBaseContext(), "Module Selected from Scroller.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "SensorModule Selected from Scroller.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
 
-    private void  displayModuleScreens(Module module) {
+    private void  displayModuleScreens(SensorModule module) {
         ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
 
         ModuleScreenController msc = new ModuleScreenController(verticleScroller, null, getApplicationContext());
@@ -139,6 +137,10 @@ public class MainActivity extends AppCompatActivity
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Motor Monitor Feedback");
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "\n\nSent from MotorMonitor Android Application");
         startActivity(Intent.createChooser(emailIntent, "Send mail using..."));
+    }
+
+    private void addNewModule() {
+
     }
 }
 
