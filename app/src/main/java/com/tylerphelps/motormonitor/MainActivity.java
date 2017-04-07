@@ -8,19 +8,23 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.view.LayoutInflater;
 import android.view.View;
 import java.util.ArrayList;
 import android.content.Intent;
-
+import android.text.InputType;
+import android.content.DialogInterface;
 import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.safetynet.SafetyNetStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.tylerphelps.motormonitor.barcode.BarcodeCaptureActivity;
 
@@ -29,6 +33,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseController dc;
+    private String m_Text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +44,14 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         this.dc = new DatabaseController(this);
+        this.m_Text = "";
 
         showThumbnailScroller();
         showModuleScreens(null);
@@ -73,11 +79,6 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return super.onOptionsItemSelected(item);
-    }
-
-    public void switchToModule(int position) {
-        Toast.makeText(this, "Could not get module at position " + position + ".",
-                Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity
 
         // Populate module list from database here
         for (SensorModule module : modules) {
-            View view  = inflater.inflate(R.layout.module_thumb, sideScroller, false);
+            View view = inflater.inflate(R.layout.module_thumb, sideScroller, false);
 
             // set item content in view
             ((TextView) view.findViewById(R.id.moduleNameTextView)).setText(module.getViewable_name());
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void  showModuleScreens(SensorModule module) {
+    private void showModuleScreens(SensorModule module) {
         ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
 
         ModuleScreenController msc = new ModuleScreenController(verticleScroller, null, getApplicationContext());
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity
         Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
         emailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         emailIntent.setType("vnd.android.cursor.item/email");
-        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"phelps3@wisc.edu"});
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"phelps3@wisc.edu"});
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Motor Monitor Feedback");
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "\n\nSent from MotorMonitor Android Application");
         startActivity(Intent.createChooser(emailIntent, "Send mail using..."));
@@ -149,7 +150,7 @@ public class MainActivity extends AppCompatActivity
 
     private void addNewModule() {
         Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
-        Toast.makeText(getBaseContext(),"Scan Barcode to Add New Module",
+        Toast.makeText(getBaseContext(), "Scan Barcode to Add New Module",
                 Toast.LENGTH_LONG).show();
         startActivityForResult(intent, 1);
     }
@@ -160,8 +161,6 @@ public class MainActivity extends AppCompatActivity
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
                     Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
-                    Point[] p = barcode.cornerPoints;
-
                     String barcodeData = barcode.displayValue;
                     Log.d("QR CODE SCANNER", barcodeData);
 
@@ -175,48 +174,74 @@ public class MainActivity extends AppCompatActivity
                                     json.getString("access_passcode"), json.getString("viewable_name"),
                                     "", json.getLong("sensor_module_id"));
 
-                            try {
-                                newModule.setId(this.dc.getNextSensorModuleId());
-                                this.dc.addSensorModule(newModule);
-                                Toast.makeText(getBaseContext(),"New Sensor Module Added!",
-                                        Toast.LENGTH_SHORT).show();
-
-                                try {
-                                    showThumbnailScroller();
-                                }
-                                catch (Exception e) {
-                                    Toast.makeText(getBaseContext(),"Error Refreshing",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                            catch (Exception e) {
-                                //database errors
-                                Toast.makeText(getBaseContext(),"Error: Could Not Add New Sensor Module",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        catch (Exception e) {
+                            checkForModulePassword(newModule);
+                        } catch (Exception e) {
                             //invalid format
-                            Toast.makeText(getBaseContext(),"Error: Invalid QR Code Data",
+                            Toast.makeText(getBaseContext(), "Error: Invalid QR Code Data",
                                     Toast.LENGTH_SHORT).show();
                         }
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         //couldnt parse json data
-                        Toast.makeText(getBaseContext(),"Error: Invalid QR Code Data",
+                        Toast.makeText(getBaseContext(), "Error: Invalid QR Code Data",
                                 Toast.LENGTH_SHORT).show();
                     }
-                }
-                else {
+                } else {
                     Log.e("QR CODE SCANNER", "Nothing Captured");
                 }
-            }
-            else {
+            } else {
                 Log.e("QR CODE SCANNER", "ERROR");
             }
-        }
-        else {
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    private void checkForModulePassword(final SensorModule module) {
+        final String passcode = module.getAccess_passcode();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Enter Sensor Module Passcode");
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        builder.setView(input);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(input.getText().toString().equals(passcode)) {
+                    addNewModule(module);
+                }
+                else {
+                    Toast.makeText(getBaseContext(), "Incorrect Passcode",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    private void addNewModule(SensorModule module) {
+        try {
+            module.setId(this.dc.getNextSensorModuleId());
+            this.dc.addSensorModule(module);
+            Toast.makeText(getBaseContext(), "New Sensor Module Added!",
+                    Toast.LENGTH_SHORT).show();
+
+            try {
+                showThumbnailScroller();
+            } catch (Exception e) {
+                Toast.makeText(getBaseContext(), "Error Refreshing",
+                        Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            //database errors
+            Toast.makeText(getBaseContext(), "Error: Could Not Add New Sensor Module",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 }
