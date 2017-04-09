@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity
     private void showModuleScreens(SensorModule module) {
         ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
 
-        ModuleScreenController msc = new ModuleScreenController(verticleScroller, null, getApplicationContext());
+        ModuleScreenController msc = new ModuleScreenController(verticleScroller, module, getApplicationContext());
         msc.updateListView();
     }
 

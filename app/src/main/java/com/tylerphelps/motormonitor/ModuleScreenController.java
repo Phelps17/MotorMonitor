@@ -42,13 +42,14 @@ public class ModuleScreenController {
     }
 
     public void updateListView() {
-        clearListView();
+        //clearListView();
 
         try {
             populateListView();
         }
         catch (Exception e) {
             System.out.println("SOMETHING HERE!!!!!!!!!!!!!!!!!!!");
+            System.out.println();
         }
     }
 
@@ -57,7 +58,7 @@ public class ModuleScreenController {
         convertView = inflater.inflate(R.layout.module_vibration_screen, this.listview, false);
         convertView.setMinimumHeight(this.listview.getMeasuredHeight());
         convertView.setTag(viewHolder);
-        System.out.println("WE BE HERE!!!!!!!!!!!!!!!!!!!");
+        System.out.println("Vibration up");
     }
 
     private void setUpTempAnalyticScreen(View convertView,
@@ -65,6 +66,7 @@ public class ModuleScreenController {
         convertView = inflater.inflate(R.layout.module_temperature_screen, this.listview, false);
         convertView.setMinimumHeight(this.listview.getMeasuredHeight());
         convertView.setTag(viewHolder);
+        System.out.println("Temp up");
     }
 
 }
