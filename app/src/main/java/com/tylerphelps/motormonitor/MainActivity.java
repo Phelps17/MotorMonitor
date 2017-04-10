@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(getBaseContext(), "SensorModule " + module.getAccess_name() + "Selected from Scroller.", Toast.LENGTH_SHORT).show();
+                    showModuleScreens(module);
                 }
             });
         }
@@ -139,11 +140,12 @@ public class MainActivity extends AppCompatActivity
 
         ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
         verticleScroller.removeAllViewsInLayout();
-        ArrayList<Integer> test = new ArrayList<Integer>();
-        test.add(1);
-        test.add(2);
+        ArrayList<Integer> screensNeeded = new ArrayList<Integer>();
+        screensNeeded.add(1);
+        screensNeeded.add(2);
+        screensNeeded.add(3);
 
-        ModuleScreenAdapter adapter = new ModuleScreenAdapter(this, test);
+        ModuleScreenAdapter adapter = new ModuleScreenAdapter(this, screensNeeded);
 
         //Set listview adapter
         ListView listView = (ListView) findViewById(R.id.module_screen_scroller);

@@ -35,9 +35,8 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         if(convertView == null) {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            System.out.println("current index: " + this.curScreenIndex);
 
-            switch (this.curScreenIndex) {
+            /*switch (this.curScreenIndex) {
                 case 0:
                     convertView = inflater.inflate(R.layout.module_vibration_screen, parent, false);
                     convertView.setMinimumHeight(parent.getMeasuredHeight());
@@ -51,11 +50,47 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
                 default:
                     this.curScreenIndex++;
                     break;
+            }*/
+
+            switch (position) {
+                case 0:
+                    convertView = inflater.inflate(R.layout.module_main_view, parent, false);
+                    convertView.setMinimumHeight(parent.getMeasuredHeight());
+                    break;
+                case 1:
+                    convertView = inflater.inflate(R.layout.module_vibration_screen, parent, false);
+                    convertView.setMinimumHeight(parent.getMeasuredHeight());
+                    break;
+                case 2:
+                    convertView = inflater.inflate(R.layout.module_temperature_screen, parent, false);
+                    convertView.setMinimumHeight(parent.getMeasuredHeight());
+                    break;
+                default:
+                    break;
             }
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            switch (position) {
+                case 0:
+                    convertView = inflater.inflate(R.layout.module_main_view, parent, false);
+                    convertView.setMinimumHeight(parent.getMeasuredHeight());
+                    break;
+                case 1:
+                    convertView = inflater.inflate(R.layout.module_vibration_screen, parent, false);
+                    convertView.setMinimumHeight(parent.getMeasuredHeight());
+                    break;
+                case 2:
+                    convertView = inflater.inflate(R.layout.module_temperature_screen, parent, false);
+                    convertView.setMinimumHeight(parent.getMeasuredHeight());
+                    break;
+                default:
+                    break;
+            }
+
+            convertView.setTag(viewHolder);
         }
 
         return convertView;
