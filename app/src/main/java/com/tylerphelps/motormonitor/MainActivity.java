@@ -1,6 +1,5 @@
 package com.tylerphelps.motormonitor;
 
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,11 +8,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,10 +23,9 @@ import android.content.Intent;
 import android.text.InputType;
 import android.content.DialogInterface;
 import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.safetynet.SafetyNetStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.tylerphelps.motormonitor.barcode.BarcodeCaptureActivity;
-
+import android.widget.ListView;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity
@@ -115,7 +113,7 @@ public class MainActivity extends AppCompatActivity
         LayoutInflater inflater = LayoutInflater.from(this);
 
         // Populate module list from database here
-        for (SensorModule module : modules) {
+        for (final SensorModule module : modules) {
             View view = inflater.inflate(R.layout.module_thumb, sideScroller, false);
 
             // set item content in view
@@ -125,17 +123,33 @@ public class MainActivity extends AppCompatActivity
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getBaseContext(), "SensorModule Selected from Scroller.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "SensorModule " + module.getAccess_name() + "Selected from Scroller.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
 
     private void showModuleScreens(SensorModule module) {
-        ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
+        /*ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
+
+        //TODO POPULATE GRAPHS HERE
 
         ModuleScreenController msc = new ModuleScreenController(verticleScroller, module, getApplicationContext());
-        msc.updateListView();
+        msc.updateListView();*/
+
+        ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
+        verticleScroller.removeAllViewsInLayout();
+        ArrayList<Integer> test = new ArrayList<Integer>();
+        test.add(1);
+        test.add(2);
+
+        ModuleScreenAdapter adapter = new ModuleScreenAdapter(this, test);
+
+        //Set listview adapter
+        ListView listView = (ListView) findViewById(R.id.module_screen_scroller);
+        listView.setAdapter(adapter);
+
+        adapter.setNotifyOnChange(true);
     }
 
     private void sendFeedbackEmail() {

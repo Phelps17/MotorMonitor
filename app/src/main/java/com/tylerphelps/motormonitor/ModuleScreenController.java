@@ -4,12 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 /**
  * Created by TylerPhelps on 3/19/17.
@@ -42,31 +37,34 @@ public class ModuleScreenController {
     }
 
     public void updateListView() {
-        //clearListView();
+        clearListView();
 
         try {
             populateListView();
         }
         catch (Exception e) {
-            System.out.println("SOMETHING HERE!!!!!!!!!!!!!!!!!!!");
-            System.out.println();
+            System.out.println(e.toString());
         }
     }
 
     private void setUpVibrationAnalyticScreen(View convertView,
                                               LayoutInflater inflater, ViewHolder viewHolder) {
+
         convertView = inflater.inflate(R.layout.module_vibration_screen, this.listview, false);
         convertView.setMinimumHeight(this.listview.getMeasuredHeight());
         convertView.setTag(viewHolder);
         System.out.println("Vibration up");
+
     }
 
     private void setUpTempAnalyticScreen(View convertView,
                                          LayoutInflater inflater, ViewHolder viewHolder) {
+
         convertView = inflater.inflate(R.layout.module_temperature_screen, this.listview, false);
         convertView.setMinimumHeight(this.listview.getMeasuredHeight());
         convertView.setTag(viewHolder);
         System.out.println("Temp up");
+
     }
 
 }

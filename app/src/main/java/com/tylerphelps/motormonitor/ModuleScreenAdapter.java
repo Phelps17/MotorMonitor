@@ -35,6 +35,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         if(convertView == null) {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
+            System.out.println("current index: " + this.curScreenIndex);
 
             switch (this.curScreenIndex) {
                 case 0:
@@ -48,7 +49,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
                     this.curScreenIndex++;
                     break;
                 default:
-                    this.curScreenIndex = 0;
+                    this.curScreenIndex++;
                     break;
             }
 
