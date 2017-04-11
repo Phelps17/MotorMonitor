@@ -27,6 +27,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.tylerphelps.motormonitor.barcode.BarcodeCaptureActivity;
 import android.widget.ListView;
 import org.json.JSONObject;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,6 +51,16 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         this.dc = new DatabaseController(this);
         this.m_Text = "";
+
+        /*for (SensorModule module : dc.getSensorModules()) {
+            for (int i = 0; i < 50; i++) {
+                double vibration = 75 + Math.random() * 50;
+                double temperature = 85 + Math.random()*40;
+                SensorDataEntry data = new SensorDataEntry((long) 0, module.getAccess_name(), new Date(), (double) i, vibration, temperature);
+                data.setId(this.dc.getNextDataEntryId());
+                this.dc.addDataEntry(data);
+            }
+        }*/
 
         showThumbnailScroller();
         showModuleScreens(null);

@@ -84,6 +84,15 @@ public class DatabaseController {
         return modules.get(modules.size()-1).getId()+1;
     }
 
+    public long getNextDataEntryId() {
+        List<SensorDataEntry> data = this.sensorDataEntryDao.loadAll();
+        if (data.size() == 0) {
+            return 0;
+        }
+
+        return data.get(data.size()-1).getId()+1;
+    }
+
     public void closeDatabase()
     {
         Log.d("DB", "close");
