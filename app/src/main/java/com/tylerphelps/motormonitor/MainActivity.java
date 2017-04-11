@@ -27,7 +27,8 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.tylerphelps.motormonitor.barcode.BarcodeCaptureActivity;
 import android.widget.ListView;
 import org.json.JSONObject;
-import java.util.Date;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -130,6 +131,21 @@ public class MainActivity extends AppCompatActivity
 
             // set item content in view
             ((TextView) view.findViewById(R.id.moduleNameTextView)).setText(module.getViewable_name());
+
+            double avg_temp = 0.0;
+            double vibrations = 0.0;
+            int count = 0;
+            NumberFormat formatter = new DecimalFormat("#0.00");
+
+            for (SensorDataEntry data : this.dc.getDataFromModule(module)) {
+                count++;
+                avg_temp += data.getTemperature();
+                vibrations += data.getVibration();
+            }
+            avg_temp = avg_temp / count;
+
+            ((TextView) view.findViewById(R.id.temperatureTextView)).setText(formatter.format(avg_temp)+"°F");
+            ((TextView) view.findViewById(R.id.vibrationTextView)).setText(formatter.format(vibrations/1000)+"K");
             sideScroller.addView(view);
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -143,12 +159,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showModuleScreens(SensorModule module) {
-        /*ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
-
-        //TODO POPULATE GRAPHS HERE
-
-        ModuleScreenController msc = new ModuleScreenController(verticleScroller, module, getApplicationContext());
-        msc.updateListView();*/
+       //TODO POPULATE GRAPHS HERE
 
         ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
         verticleScroller.removeAllViewsInLayout();
@@ -269,6 +280,18 @@ public class MainActivity extends AppCompatActivity
             //database errors
             Toast.makeText(getBaseContext(), "Error: Could Not Add New Sensor Module",
                     Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public View getViewByPosition(int pos, ListView listView) {
+        final int firstListItemPosition = listView.getFirstVisiblePosition();
+        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+        if (pos < firstListItemPosition || pos > lastListItemPosition ) {
+            return listView.getAdapter().getView(pos, null, listView);
+        } else {
+            final int childIndex = pos - firstListItemPosition;
+            return listView.getChildAt(childIndex);
         }
     }
 }

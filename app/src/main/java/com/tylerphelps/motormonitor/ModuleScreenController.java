@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 /**
  * Created by TylerPhelps on 3/19/17.
  */
@@ -28,12 +30,20 @@ public class ModuleScreenController {
     }
 
     private void populateListView() {
-        ViewHolder viewHolder = new ViewHolder();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View convertView = null;
+        this.listview.removeAllViewsInLayout();
+        ArrayList<Integer> screensNeeded = new ArrayList<Integer>();
+        screensNeeded.add(1);
+        screensNeeded.add(2);
+        screensNeeded.add(3);
 
-        setUpVibrationAnalyticScreen(convertView, inflater, viewHolder);
-        setUpTempAnalyticScreen(convertView, inflater, viewHolder);
+        ModuleScreenAdapter adapter = new ModuleScreenAdapter(this.context, screensNeeded);
+
+        //Set listview adapter
+        this.listview.setAdapter(adapter);
+        adapter.setNotifyOnChange(true);
+
+        setUpVibrationAnalyticScreen();
+        setUpTempAnalyticScreen();
     }
 
     public void updateListView() {
@@ -47,23 +57,11 @@ public class ModuleScreenController {
         }
     }
 
-    private void setUpVibrationAnalyticScreen(View convertView,
-                                              LayoutInflater inflater, ViewHolder viewHolder) {
-
-        convertView = inflater.inflate(R.layout.module_vibration_screen, this.listview, false);
-        convertView.setMinimumHeight(this.listview.getMeasuredHeight());
-        convertView.setTag(viewHolder);
-        System.out.println("Vibration up");
+    private void setUpVibrationAnalyticScreen() {
 
     }
 
-    private void setUpTempAnalyticScreen(View convertView,
-                                         LayoutInflater inflater, ViewHolder viewHolder) {
-
-        convertView = inflater.inflate(R.layout.module_temperature_screen, this.listview, false);
-        convertView.setMinimumHeight(this.listview.getMeasuredHeight());
-        convertView.setTag(viewHolder);
-        System.out.println("Temp up");
+    private void setUpTempAnalyticScreen() {
 
     }
 
