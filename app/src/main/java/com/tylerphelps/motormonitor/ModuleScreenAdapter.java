@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import com.jjoe64.graphview.GraphView;
@@ -19,10 +21,28 @@ import java.util.Random;
  */
 
 public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
-    int curScreenIndex;
+    SensorModule module;
+    DatabaseController dc;
+    double avg_temp, vibrations;
+    ArrayList<SensorDataEntry> data;
+    NumberFormat formatter = new DecimalFormat("#0.00");
 
     public ModuleScreenAdapter(Context context, ArrayList<Integer> modules) {
         super(context, R.layout.module_main_view, modules);
+    }
+
+    public void setUpAdapter(DatabaseController dc, SensorModule module) {
+        this.module = module;
+        this.dc = dc;
+        this.data = new ArrayList(this.dc.getDataFromModule(module));
+        int count = 0;
+
+        for (SensorDataEntry entry : this.data) {
+            count++;
+            this.avg_temp += entry.getTemperature();
+            this.vibrations += entry.getVibration();
+        }
+        this.avg_temp = this.avg_temp / count;
     }
 
     private static class ViewHolder {
@@ -45,6 +65,18 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
                 case 1:
                     convertView = inflater.inflate(R.layout.module_vibration_screen, parent, false);
                     convertView.setMinimumHeight(parent.getMeasuredHeight());
+                    ((TextView) convertView.findViewById(R.id.vibrationsTextView)).setText(formatter.format(this.vibrations/1000)+"k Vibrations");
+
+                    ArrayList<DataPoint> graphData = new ArrayList<DataPoint>();
+                    for (SensorDataEntry entry : this.data) {
+                        graphData.add(new DataPoint(entry.getTime(), entry.getVibration()));
+                    }
+                    DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);
+
+                    GraphView graph = ((GraphView) convertView.findViewById(R.id.graph));
+                    LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
+                    graph.addSeries(series);
+
                     break;
                 case 2:
                     convertView = inflater.inflate(R.layout.module_temperature_screen, parent, false);
@@ -66,6 +98,18 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
                 case 1:
                     convertView = inflater.inflate(R.layout.module_vibration_screen, parent, false);
                     convertView.setMinimumHeight(parent.getMeasuredHeight());
+                    ((TextView) convertView.findViewById(R.id.vibrationsTextView)).setText(formatter.format(this.vibrations/1000)+"k Vibrations");
+
+                    ArrayList<DataPoint> graphData = new ArrayList<DataPoint>();
+                    for (SensorDataEntry entry : this.data) {
+                        graphData.add(new DataPoint(entry.getTime(), entry.getVibration()));
+                    }
+                    DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);
+
+                    GraphView graph = ((GraphView) convertView.findViewById(R.id.graph));
+                    LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
+                    graph.addSeries(series);
+
                     break;
                 case 2:
                     convertView = inflater.inflate(R.layout.module_temperature_screen, parent, false);

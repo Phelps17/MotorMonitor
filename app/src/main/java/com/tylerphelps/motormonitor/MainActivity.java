@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity
         }*/
 
         showThumbnailScroller();
-        showModuleScreens(null);
+        showModuleScreens(this.dc.getSensorModules().get(0));
     }
 
     @Override
@@ -169,6 +169,7 @@ public class MainActivity extends AppCompatActivity
         screensNeeded.add(3);
 
         ModuleScreenAdapter adapter = new ModuleScreenAdapter(this, screensNeeded);
+        adapter.setUpAdapter(this.dc, module);
 
         //Set listview adapter
         ListView listView = (ListView) findViewById(R.id.module_screen_scroller);
@@ -280,18 +281,6 @@ public class MainActivity extends AppCompatActivity
             //database errors
             Toast.makeText(getBaseContext(), "Error: Could Not Add New Sensor Module",
                     Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public View getViewByPosition(int pos, ListView listView) {
-        final int firstListItemPosition = listView.getFirstVisiblePosition();
-        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
-
-        if (pos < firstListItemPosition || pos > lastListItemPosition ) {
-            return listView.getAdapter().getView(pos, null, listView);
-        } else {
-            final int childIndex = pos - firstListItemPosition;
-            return listView.getChildAt(childIndex);
         }
     }
 }
