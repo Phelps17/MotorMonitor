@@ -116,6 +116,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         GraphView graph = ((GraphView) convertView.findViewById(R.id.graph));
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
         graph.addSeries(series);
+        graph.getViewport().setScalable(true);
     }
 
     private void populateTemperatureGraph(View convertView) {
@@ -124,11 +125,13 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         ArrayList<DataPoint> graphData = new ArrayList<DataPoint>();
         for (SensorDataEntry entry : this.data) {
             graphData.add(new DataPoint(entry.getTime(), entry.getTemperature()));
+            //System.out.println("Temp Data: (" + entry.getTime() + ", " + entry.getTemperature() + ")");
         }
         DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);
 
         GraphView graph = ((GraphView) convertView.findViewById(R.id.graph));
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
         graph.addSeries(series);
+        graph.getViewport().setScalable(true);
     }
 }

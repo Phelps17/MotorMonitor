@@ -151,7 +151,6 @@ public class MainActivity extends AppCompatActivity
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getBaseContext(), "SensorModule " + module.getViewable_name() + " Selected from Scroller.", Toast.LENGTH_SHORT).show();
                     showModuleScreens(module);
                 }
             });
@@ -159,9 +158,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showModuleScreens(SensorModule module) {
-       //TODO POPULATE GRAPHS HERE
-
-        ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
+       ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
         verticleScroller.removeAllViewsInLayout();
         ArrayList<Integer> screensNeeded = new ArrayList<Integer>();
         screensNeeded.add(1);
