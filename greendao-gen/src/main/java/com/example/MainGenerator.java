@@ -25,8 +25,8 @@ public class MainGenerator {
         Entity sensorModule = addModule(schema);
         Entity sensorDataEntry = addDataEntry(schema);
 
-        Property sensorModuleId = sensorModule.addLongProperty("sensorModuleId").notNull().getProperty();
-        sensorModule.addToMany(sensorDataEntry, sensorModuleId, "userRepos");
+        //Property sensorModuleId = sensorModule.addLongProperty("sensorModuleId").notNull().getProperty();
+        //sensorModule.addToMany(sensorDataEntry, sensorModuleId, "userRepos");
     }
 
     private static Entity addModule(final Schema schema) {

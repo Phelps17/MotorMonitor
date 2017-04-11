@@ -1,6 +1,5 @@
 package com.tylerphelps.motormonitor;
 
-import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -8,8 +7,6 @@ import android.database.sqlite.SQLiteStatement;
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.Property;
 import de.greenrobot.dao.internal.DaoConfig;
-import de.greenrobot.dao.query.Query;
-import de.greenrobot.dao.query.QueryBuilder;
 
 import com.tylerphelps.motormonitor.SensorDataEntry;
 
@@ -32,10 +29,8 @@ public class SensorDataEntryDao extends AbstractDao<SensorDataEntry, Long> {
         public final static Property Time = new Property(3, Double.class, "time", false, "TIME");
         public final static Property Vibration = new Property(4, Double.class, "vibration", false, "VIBRATION");
         public final static Property Temperature = new Property(5, Double.class, "temperature", false, "TEMPERATURE");
-        public final static Property SensorModuleId = new Property(6, long.class, "sensorModuleId", false, "SENSOR_MODULE_ID");
     };
 
-    private Query<SensorDataEntry> sensorModule_UserReposQuery;
 
     public SensorDataEntryDao(DaoConfig config) {
         super(config);
@@ -54,8 +49,7 @@ public class SensorDataEntryDao extends AbstractDao<SensorDataEntry, Long> {
                 "\"DATE\" INTEGER," + // 2: date
                 "\"TIME\" REAL," + // 3: time
                 "\"VIBRATION\" REAL," + // 4: vibration
-                "\"TEMPERATURE\" REAL," + // 5: temperature
-                "\"SENSOR_MODULE_ID\" INTEGER NOT NULL );"); // 6: sensorModuleId
+                "\"TEMPERATURE\" REAL);"); // 5: temperature
     }
 
     /** Drops the underlying database table. */
@@ -150,18 +144,4 @@ public class SensorDataEntryDao extends AbstractDao<SensorDataEntry, Long> {
         return true;
     }
     
-    /** Internal query to resolve the "userRepos" to-many relationship of SensorModule. */
-    public List<SensorDataEntry> _querySensorModule_UserRepos(long sensorModuleId) {
-        synchronized (this) {
-            if (sensorModule_UserReposQuery == null) {
-                QueryBuilder<SensorDataEntry> queryBuilder = queryBuilder();
-                queryBuilder.where(Properties.SensorModuleId.eq(null));
-                sensorModule_UserReposQuery = queryBuilder.build();
-            }
-        }
-        Query<SensorDataEntry> query = sensorModule_UserReposQuery.forCurrentThread();
-        query.setParameter(0, sensorModuleId);
-        return query.list();
-    }
-
 }

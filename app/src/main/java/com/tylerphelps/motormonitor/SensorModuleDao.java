@@ -28,10 +28,7 @@ public class SensorModuleDao extends AbstractDao<SensorModule, Long> {
         public final static Property Access_passcode = new Property(2, String.class, "access_passcode", false, "ACCESS_PASSCODE");
         public final static Property Viewable_name = new Property(3, String.class, "viewable_name", false, "VIEWABLE_NAME");
         public final static Property Details = new Property(4, String.class, "details", false, "DETAILS");
-        public final static Property SensorModuleId = new Property(5, long.class, "sensorModuleId", false, "SENSOR_MODULE_ID");
     };
-
-    private DaoSession daoSession;
 
 
     public SensorModuleDao(DaoConfig config) {
@@ -40,7 +37,6 @@ public class SensorModuleDao extends AbstractDao<SensorModule, Long> {
     
     public SensorModuleDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
-        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -51,8 +47,7 @@ public class SensorModuleDao extends AbstractDao<SensorModule, Long> {
                 "\"ACCESS_NAME\" TEXT NOT NULL ," + // 1: access_name
                 "\"ACCESS_PASSCODE\" TEXT NOT NULL ," + // 2: access_passcode
                 "\"VIEWABLE_NAME\" TEXT NOT NULL ," + // 3: viewable_name
-                "\"DETAILS\" TEXT," + // 4: details
-                "\"SENSOR_MODULE_ID\" INTEGER NOT NULL );"); // 5: sensorModuleId
+                "\"DETAILS\" TEXT);"); // 4: details
     }
 
     /** Drops the underlying database table. */
@@ -78,13 +73,6 @@ public class SensorModuleDao extends AbstractDao<SensorModule, Long> {
         if (details != null) {
             stmt.bindString(5, details);
         }
-        stmt.bindLong(6, entity.getSensorModuleId());
-    }
-
-    @Override
-    protected void attachEntity(SensorModule entity) {
-        super.attachEntity(entity);
-        entity.__setDaoSession(daoSession);
     }
 
     /** @inheritdoc */
@@ -101,8 +89,7 @@ public class SensorModuleDao extends AbstractDao<SensorModule, Long> {
             cursor.getString(offset + 1), // access_name
             cursor.getString(offset + 2), // access_passcode
             cursor.getString(offset + 3), // viewable_name
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // details
-            cursor.getLong(offset + 5) // sensorModuleId
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // details
         );
         return entity;
     }
@@ -115,7 +102,6 @@ public class SensorModuleDao extends AbstractDao<SensorModule, Long> {
         entity.setAccess_passcode(cursor.getString(offset + 2));
         entity.setViewable_name(cursor.getString(offset + 3));
         entity.setDetails(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setSensorModuleId(cursor.getLong(offset + 5));
      }
     
     /** @inheritdoc */

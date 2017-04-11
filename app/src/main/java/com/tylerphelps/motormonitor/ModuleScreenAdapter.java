@@ -21,7 +21,6 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
 
     public ModuleScreenAdapter(Context context, ArrayList<Integer> modules) {
         super(context, R.layout.module_main_view, modules);
-        this.curScreenIndex = 0;
     }
 
     private static class ViewHolder {
@@ -35,22 +34,6 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         if(convertView == null) {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-
-            /*switch (this.curScreenIndex) {
-                case 0:
-                    convertView = inflater.inflate(R.layout.module_vibration_screen, parent, false);
-                    convertView.setMinimumHeight(parent.getMeasuredHeight());
-                    this.curScreenIndex++;
-                    break;
-                case 1:
-                    convertView = inflater.inflate(R.layout.module_temperature_screen, parent, false);
-                    convertView.setMinimumHeight(parent.getMeasuredHeight());
-                    this.curScreenIndex++;
-                    break;
-                default:
-                    this.curScreenIndex++;
-                    break;
-            }*/
 
             switch (position) {
                 case 0:

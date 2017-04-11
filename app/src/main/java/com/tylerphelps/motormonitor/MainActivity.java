@@ -52,6 +52,12 @@ public class MainActivity extends AppCompatActivity
         this.dc = new DatabaseController(this);
         this.m_Text = "";
 
+        /*this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vr3hfue3", "12345", "Main Valve 1", ""));
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65fadasdafue3", "12345", "Main Valve 2", ""));
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65fx43r3hfue3", "12345", "Main Valve 3", ""));
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vrasddqf", "12345", "Overflow Valve 1", ""));
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "76b733hfe0ue3", "12345", "Front Office AC", ""));*/
+
         /*for (SensorModule module : dc.getSensorModules()) {
             for (int i = 0; i < 50; i++) {
                 double vibration = 75 + Math.random() * 50;
@@ -111,11 +117,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showThumbnailScroller() {
-        /*dc.addSensorModule(new SensorModule((long) 1, "a", "a", "Main 1", "", (long) 1));
-        dc.addSensorModule(new SensorModule((long) 2, "b", "b", "Main 2", "", (long) 2));
-        dc.addSensorModule(new SensorModule((long) 3, "c", "c", "Test 1", "", (long) 3));
-        dc.addSensorModule(new SensorModule((long) 4, "d", "d", "Back Pump Valve", "", (long) 4));
-        dc.addSensorModule(new SensorModule((long) 5, "e", "e", "Office AC Unit", "", (long) 5));*/
         ArrayList<SensorModule> modules = new ArrayList<>(dc.getSensorModules());
 
         // Set listview adapter
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getBaseContext(), "SensorModule " + module.getAccess_name() + "Selected from Scroller.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "SensorModule " + module.getViewable_name() + " Selected from Scroller.", Toast.LENGTH_SHORT).show();
                     showModuleScreens(module);
                 }
             });
@@ -161,7 +162,6 @@ public class MainActivity extends AppCompatActivity
         //Set listview adapter
         ListView listView = (ListView) findViewById(R.id.module_screen_scroller);
         listView.setAdapter(adapter);
-
         adapter.setNotifyOnChange(true);
     }
 
@@ -196,10 +196,10 @@ public class MainActivity extends AppCompatActivity
                         long newId = 0;
                         try {
                             //(Long id, String access_name, String access_passcode,
-                            // //String viewable_name, String details, long sensorModuleId)
+                            // String viewable_name, String details)
                             SensorModule newModule = new SensorModule(newId, json.getString("access_name"),
                                     json.getString("access_passcode"), json.getString("viewable_name"),
-                                    "", json.getLong("sensor_module_id"));
+                                    "");
 
                             checkForModulePassword(newModule);
                         } catch (Exception e) {
