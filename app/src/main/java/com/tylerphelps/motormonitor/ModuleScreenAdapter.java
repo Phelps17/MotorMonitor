@@ -2,18 +2,20 @@ package com.tylerphelps.motormonitor;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.ArrayList;
-
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import android.widget.Spinner;
 
 /**
  * Created by TylerPhelps on 3/4/17.
@@ -60,6 +62,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
                 case 0:
                     convertView = inflater.inflate(R.layout.module_main_view, parent, false);
                     convertView.setMinimumHeight(parent.getMeasuredHeight());
+                    setupSensorDetails(convertView);
                     break;
                 case 1:
                     convertView = inflater.inflate(R.layout.module_vibration_screen, parent, false);
@@ -83,6 +86,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
                 case 0:
                     convertView = inflater.inflate(R.layout.module_main_view, parent, false);
                     convertView.setMinimumHeight(parent.getMeasuredHeight());
+                    setupSensorDetails(convertView);
                     break;
                 case 1:
                     convertView = inflater.inflate(R.layout.module_vibration_screen, parent, false);
@@ -133,5 +137,21 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
         graph.addSeries(series);
         graph.getViewport().setScalable(true);
+    }
+
+    private void setupSensorDetails(View convertView) {
+        EditText nameBox = ((EditText) convertView.findViewById(R.id.nameEditText));
+        nameBox.setText(this.module.getViewable_name());
+
+        List<String> groups = new ArrayList<String>();
+        groups.add("No Groups Created");
+        Spinner groupSpinner = ((Spinner) convertView.findViewById(R.id.groupDropDown));
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_item, groups);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        groupSpinner.setAdapter(dataAdapter);
+
+        EditText detailsBox = ((EditText) convertView.findViewById(R.id.notesEditText));
+        detailsBox.setText(this.module.getDetails());
     }
 }

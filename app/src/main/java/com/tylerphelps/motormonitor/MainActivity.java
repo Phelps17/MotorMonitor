@@ -8,7 +8,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +28,8 @@ import android.widget.ListView;
 import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import android.view.ViewGroup;
+import android.view.MotionEvent;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -158,7 +159,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showModuleScreens(SensorModule module) {
-       ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
+        ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
         verticleScroller.removeAllViewsInLayout();
         ArrayList<Integer> screensNeeded = new ArrayList<Integer>();
         screensNeeded.add(1);
@@ -172,6 +173,17 @@ public class MainActivity extends AppCompatActivity
         ListView listView = (ListView) findViewById(R.id.module_screen_scroller);
         listView.setAdapter(adapter);
         adapter.setNotifyOnChange(true);
+
+        verticleScroller.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
+        verticleScroller.setFocusable(true);
+        verticleScroller.setFocusableInTouchMode(true);
+        verticleScroller.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.requestFocusFromTouch();
+                return false;
+            }
+        });
     }
 
     private void sendFeedbackEmail() {
@@ -208,7 +220,7 @@ public class MainActivity extends AppCompatActivity
                             // String viewable_name, String details)
                             SensorModule newModule = new SensorModule(newId, json.getString("access_name"),
                                     json.getString("access_passcode"), json.getString("viewable_name"),
-                                    "");
+                                    "No saved notes.");
 
                             checkForModulePassword(newModule);
                         } catch (Exception e) {
