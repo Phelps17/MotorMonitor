@@ -3,7 +3,9 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="horizontal"
-                android:gravity="bottom|center_vertical">
+                android:gravity="bottom|center_vertical"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
 
     <Button
         android:id="@+id/updateButton"

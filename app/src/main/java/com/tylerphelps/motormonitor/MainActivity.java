@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ViewFlipper;
+import java.security.acl.Group;
 import java.util.ArrayList;
 import android.content.Intent;
 import android.text.InputType;
@@ -107,8 +109,6 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, "Home selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_add_module) {
             addNewModule();
-        } else if (id == R.id.nav_settings) {
-            Toast.makeText(this, "Settings selected.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_send) {
             sendFeedbackEmail();
         }

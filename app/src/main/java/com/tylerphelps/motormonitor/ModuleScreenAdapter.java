@@ -140,11 +140,15 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
     }
 
     private void setupSensorDetails(View convertView) {
+        convertView.setFocusable(true);
+        convertView.setFocusableInTouchMode(true);
+
         EditText nameBox = ((EditText) convertView.findViewById(R.id.nameEditText));
         nameBox.setText(this.module.getViewable_name());
 
         List<String> groups = new ArrayList<String>();
-        groups.add("No Groups Created");
+        groups.add("");
+        groups.add("Create New Group");
         Spinner groupSpinner = ((Spinner) convertView.findViewById(R.id.groupDropDown));
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item, groups);
