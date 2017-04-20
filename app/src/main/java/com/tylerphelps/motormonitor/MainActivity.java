@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.text.InputType;
 import android.content.DialogInterface;
+
+import com.google.android.gms.analytics.ExceptionParser;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.tylerphelps.motormonitor.barcode.BarcodeCaptureActivity;
@@ -72,8 +74,7 @@ public class MainActivity extends AppCompatActivity
             }
         }*/
 
-        showThumbnailScroller();
-        showModuleScreens(this.dc.getSensorModules().get(0));
+        refreshScreens(0);
     }
 
     @Override
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Toast.makeText(this, "Home selected.", Toast.LENGTH_SHORT).show();
+            //nothing
         } else if (id == R.id.nav_add_module) {
             addNewModule();
         } else if (id == R.id.nav_send) {
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity
         screensNeeded.add(3);
 
         ModuleScreenAdapter adapter = new ModuleScreenAdapter(this, screensNeeded);
-        adapter.setUpAdapter(this.dc, module);
+        adapter.setUpAdapter(this.dc, module, this);
 
         //Set listview adapter
         ListView listView = (ListView) findViewById(R.id.module_screen_scroller);
@@ -184,6 +185,31 @@ public class MainActivity extends AppCompatActivity
                 return false;
             }
         });
+    }
+
+    public void refreshScreens(SensorModule sm) {
+        int moduleIndex = 0;
+        ArrayList<SensorModule> modules = new ArrayList<>(dc.getSensorModules());
+
+        for (int i = 0; i < modules.size(); i++) {
+            if (sm.getAccess_name().equals(modules.get(i).getAccess_name())) {
+                moduleIndex = i;
+                break;
+            }
+        }
+
+        refreshScreens(moduleIndex);
+    }
+
+    public void refreshScreens(int moduleIndex) {
+        try {
+            showThumbnailScroller();
+        }
+        catch (Exception e) {System.out.println(e.toString());}
+        try {
+            showModuleScreens(this.dc.getSensorModules().get(moduleIndex));
+        }
+        catch (Exception e) {System.out.println(e.toString());}
     }
 
     private void sendFeedbackEmail() {

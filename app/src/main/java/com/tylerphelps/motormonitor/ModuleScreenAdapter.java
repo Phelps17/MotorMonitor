@@ -27,20 +27,22 @@ import android.widget.Button;
  */
 
 public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
-    SensorModule module;
-    DatabaseController dc;
-    double avg_temp, vibrations;
-    ArrayList<SensorDataEntry> data;
-    NumberFormat formatter = new DecimalFormat("#0.00");
+    private SensorModule module;
+    private DatabaseController dc;
+    private MainActivity parent;
+    private double avg_temp, vibrations;
+    private ArrayList<SensorDataEntry> data;
+    private NumberFormat formatter = new DecimalFormat("#0.00");
 
     public ModuleScreenAdapter(Context context, ArrayList<Integer> modules) {
         super(context, R.layout.module_main_view, modules);
     }
 
-    public void setUpAdapter(DatabaseController dc, SensorModule module) {
+    public void setUpAdapter(DatabaseController dc, SensorModule module, MainActivity parent) {
         this.module = module;
         this.dc = dc;
         this.data = new ArrayList(this.dc.getDataFromModule(module));
+        this.parent = parent;
         int count = 0;
 
         for (SensorDataEntry entry : this.data) {
@@ -150,6 +152,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
 
         final SensorModule module = this.module;
         final DatabaseController dc = this.dc;
+        final MainActivity myParent = this.parent;
 
         Spinner groupSpinner = ((Spinner) convertView.findViewById(R.id.groupDropDown));
         setUpGroupDropdown(groupSpinner);
@@ -159,7 +162,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         nameBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeSensorName(module, dc);
+                changeSensorName(module, dc, myParent);
             }
         });
 
@@ -168,7 +171,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         detailsBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeSensorNotes(module, dc);
+                changeSensorNotes(module, dc, myParent);
             }
         });
 
@@ -176,14 +179,14 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteSensor(module, dc);
+                deleteSensor(module, dc, myParent);
             }
         });
     }
 
     private void setUpGroupDropdown(Spinner spinner) {
         List<String> groups = new ArrayList<String>();
-        groups.add("");
+        groups.add("No Group");
         groups.add("Create New Group");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item, groups);
@@ -191,7 +194,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         spinner.setAdapter(dataAdapter);
     }
 
-    private void changeSensorName(SensorModule module, final DatabaseController dc) {
+    private void changeSensorName(final SensorModule module, final DatabaseController dc, final MainActivity parent) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
         builder.setTitle("Edit Sensor Module Name:");
         final EditText input = new EditText(this.getContext());
@@ -201,7 +204,9 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //set module name to input.getText().toString()
+                module.setViewable_name(input.getText().toString());
+                dc.updateSensorModule(module);
+                parent.refreshScreens(module);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -213,7 +218,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         builder.show();
     }
 
-    private void changeSensorNotes(SensorModule module, final DatabaseController dc) {
+    private void changeSensorNotes(final SensorModule module, final DatabaseController dc, final MainActivity parent) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
         builder.setTitle("Edit Sensor Notes:");
         final EditText input = new EditText(this.getContext());
@@ -223,7 +228,9 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //set notes to input.getText().toString()
+                module.setDetails(input.getText().toString());
+                dc.updateSensorModule(module);
+                parent.refreshScreens(module);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -235,7 +242,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         builder.show();
     }
 
-    private void deleteSensor(SensorModule module, final DatabaseController dc) {
+    private void deleteSensor(final SensorModule module, final DatabaseController dc, final MainActivity parent) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
         builder.setTitle("Delete Sensor Module?");
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -247,7 +254,8 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //delete it
+                dc.deleteSensorModule(module);
+                parent.refreshScreens(0);
             }
         });
         builder.show();

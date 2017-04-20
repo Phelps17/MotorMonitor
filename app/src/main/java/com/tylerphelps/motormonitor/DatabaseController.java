@@ -3,6 +3,8 @@ package com.tylerphelps.motormonitor;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.view.ViewGroup;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +47,24 @@ public class DatabaseController {
 
         sensorModuleDao.insert(sm);
         Log.d("DB", "added successfully");
+
+        closeReopenDatabase();
+        return true;
+    }
+
+    public boolean deleteSensorModule(SensorModule sm) {
+        Log.d("DB", "Deleteing sensor module." + sm.getId());
+        sensorModuleDao.delete(sm);
+        Log.d("DB", "removed successfully");
+
+        closeReopenDatabase();
+        return true;
+    }
+
+    public boolean updateSensorModule(SensorModule sm) {
+        Log.d("DB", "Updating sensor module." + sm.getId());
+        sensorModuleDao.insertOrReplace(sm);
+        Log.d("DB", "Updated successfully");
 
         closeReopenDatabase();
         return true;
