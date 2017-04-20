@@ -183,21 +183,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/TylerPhelps/.android/build-cache/caa5db0b7273ebe51f04a69f4facf43402903959/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
-        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c05f058b32829164ef07f5d20c22d09c42cbb1bd/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
         <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9aaf065a8c9753b095e74e100e685c9b7b473cb7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/TylerPhelps/.android/build-cache/caa5db0b7273ebe51f04a69f4facf43402903959/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c05f058b32829164ef07f5d20c22d09c42cbb1bd/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -394,7 +394,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="e497621ad8eef8637cbbf7ef2cc01f302cac2134">
+        sha1="59757a1f7f44c3adbb0a4126fa3bf20afd128e9e">
         <dex dex="/Users/TylerPhelps/Documents/workspace/MotorMonitor/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_ac6e613532f18370cdd673d0efd3226dc1dfbd1c/classes.dex" />
     </item>
     <item

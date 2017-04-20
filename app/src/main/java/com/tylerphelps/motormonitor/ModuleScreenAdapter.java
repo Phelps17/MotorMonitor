@@ -1,6 +1,9 @@
 package com.tylerphelps.motormonitor;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,6 +19,8 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import android.widget.Spinner;
+import android.widget.Toast;
+import android.widget.Button;
 
 /**
  * Created by TylerPhelps on 3/4/17.
@@ -143,19 +148,108 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         convertView.setFocusable(true);
         convertView.setFocusableInTouchMode(true);
 
+        final SensorModule module = this.module;
+        final DatabaseController dc = this.dc;
+
+        Spinner groupSpinner = ((Spinner) convertView.findViewById(R.id.groupDropDown));
+        setUpGroupDropdown(groupSpinner);
+
         EditText nameBox = ((EditText) convertView.findViewById(R.id.nameEditText));
         nameBox.setText(this.module.getViewable_name());
-
-        List<String> groups = new ArrayList<String>();
-        groups.add("");
-        groups.add("Create New Group");
-        Spinner groupSpinner = ((Spinner) convertView.findViewById(R.id.groupDropDown));
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item, groups);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        groupSpinner.setAdapter(dataAdapter);
+        nameBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeSensorName(module, dc);
+            }
+        });
 
         EditText detailsBox = ((EditText) convertView.findViewById(R.id.notesEditText));
         detailsBox.setText(this.module.getDetails());
+        detailsBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeSensorNotes(module, dc);
+            }
+        });
+
+        Button deleteButton = ((Button) convertView.findViewById(R.id.deleteButton));
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteSensor(module, dc);
+            }
+        });
+    }
+
+    private void setUpGroupDropdown(Spinner spinner) {
+        List<String> groups = new ArrayList<String>();
+        groups.add("");
+        groups.add("Create New Group");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_item, groups);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataAdapter);
+    }
+
+    private void changeSensorName(SensorModule module, final DatabaseController dc) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
+        builder.setTitle("Edit Sensor Module Name:");
+        final EditText input = new EditText(this.getContext());
+        input.setText(module.getViewable_name());
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //set module name to input.getText().toString()
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    private void changeSensorNotes(SensorModule module, final DatabaseController dc) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
+        builder.setTitle("Edit Sensor Notes:");
+        final EditText input = new EditText(this.getContext());
+        input.setText(module.getDetails());
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //set notes to input.getText().toString()
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    private void deleteSensor(SensorModule module, final DatabaseController dc) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
+        builder.setTitle("Delete Sensor Module?");
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //delete it
+            }
+        });
+        builder.show();
     }
 }

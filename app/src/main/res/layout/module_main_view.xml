@@ -8,7 +8,7 @@
                 android:focusableInTouchMode="true">
 
     <Button
-        android:id="@+id/updateButton"
+        android:id="@+id/deleteButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -16,13 +16,13 @@
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:text="Save Updates"/>
+        android:text="Delete Sensor Module"/>
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/updateButton"
+        android:layout_above="@+id/deleteButton"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="340dp"
         android:layout_marginLeft="15dp"
@@ -51,6 +51,9 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="45dp"
         android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:clickable="true"
         android:inputType="textPersonName"
         android:text="New Sensor"/>
 
@@ -88,7 +91,7 @@
         android:id="@+id/notesEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/updateButton"
+        android:layout_alignBottom="@+id/deleteButton"
         android:layout_alignTop="@+id/notesTextView"
         android:layout_marginBottom="45dp"
         android:layout_marginLeft="15dp"
@@ -96,6 +99,9 @@
         android:layout_marginTop="22dp"
         android:gravity="top"
         android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:clickable="true"
         android:inputType="textMultiLine"
         android:text="No saved notes."/>
 </RelativeLayout>
