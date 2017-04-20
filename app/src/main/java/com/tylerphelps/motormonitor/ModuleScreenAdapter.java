@@ -81,6 +81,10 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
                     convertView.setMinimumHeight(parent.getMeasuredHeight());
                     populateTemperatureGraph(convertView);
                     break;
+                case 3:
+                    convertView = inflater.inflate(R.layout.module_electric_current_screen, parent, false);
+                    convertView.setMinimumHeight(parent.getMeasuredHeight());
+                    populateElectricCurrentGraph(convertView);
                 default:
                     break;
             }
@@ -105,6 +109,10 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
                     convertView.setMinimumHeight(parent.getMeasuredHeight());
                     populateTemperatureGraph(convertView);
                     break;
+                case 3:
+                    convertView = inflater.inflate(R.layout.module_electric_current_screen, parent, false);
+                    convertView.setMinimumHeight(parent.getMeasuredHeight());
+                    populateElectricCurrentGraph(convertView);
                 default:
                     break;
             }
@@ -131,12 +139,28 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
     }
 
     private void populateTemperatureGraph(View convertView) {
-        ((TextView) convertView.findViewById(R.id.temperatureTextView)).setText(formatter.format(this.vibrations/1000)+"k Vibrations");
+        ((TextView) convertView.findViewById(R.id.temperatureTextView)).setText("Average Temperature: " +
+                formatter.format(this.avg_temp)+"°F");
 
         ArrayList<DataPoint> graphData = new ArrayList<DataPoint>();
         for (SensorDataEntry entry : this.data) {
             graphData.add(new DataPoint(entry.getTime(), entry.getTemperature()));
-            //System.out.println("Temp Data: (" + entry.getTime() + ", " + entry.getTemperature() + ")");
+        }
+        DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);
+
+        GraphView graph = ((GraphView) convertView.findViewById(R.id.graph));
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
+        graph.addSeries(series);
+        graph.getViewport().setScalable(true);
+    }
+
+    private void populateElectricCurrentGraph(View convertView) {
+        ((TextView) convertView.findViewById(R.id.electricCurrentTextView)).setText("Average Current: " +
+                formatter.format(this.avg_temp)+"A");
+
+        ArrayList<DataPoint> graphData = new ArrayList<DataPoint>();
+        for (SensorDataEntry entry : this.data) {
+            graphData.add(new DataPoint(entry.getTime(), entry.getTemperature()));
         }
         DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);
 

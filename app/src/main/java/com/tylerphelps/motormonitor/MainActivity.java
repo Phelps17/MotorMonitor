@@ -163,9 +163,10 @@ public class MainActivity extends AppCompatActivity
         ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
         verticleScroller.removeAllViewsInLayout();
         ArrayList<Integer> screensNeeded = new ArrayList<Integer>();
-        screensNeeded.add(1);
-        screensNeeded.add(2);
-        screensNeeded.add(3);
+        screensNeeded.add(0); // main view
+        screensNeeded.add(1); // temperature
+        screensNeeded.add(2); // vibrations
+        screensNeeded.add(3); // electic current
 
         ModuleScreenAdapter adapter = new ModuleScreenAdapter(this, screensNeeded);
         adapter.setUpAdapter(this.dc, module, this);
