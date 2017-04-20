@@ -30,7 +30,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
     private SensorModule module;
     private DatabaseController dc;
     private MainActivity parent;
-    private double avg_temp, vibrations;
+    private double avg_temp, vibrations, avg_current;
     private ArrayList<SensorDataEntry> data;
     private NumberFormat formatter = new DecimalFormat("#0.00");
 
@@ -48,9 +48,11 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         for (SensorDataEntry entry : this.data) {
             count++;
             this.avg_temp += entry.getTemperature();
+            this.avg_current += entry.getCurrent();
             this.vibrations += entry.getVibration();
         }
         this.avg_temp = this.avg_temp / count;
+        this.avg_current = this.avg_current / count;
     }
 
     private static class ViewHolder {
@@ -156,11 +158,11 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
 
     private void populateElectricCurrentGraph(View convertView) {
         ((TextView) convertView.findViewById(R.id.electricCurrentTextView)).setText("Average Current: " +
-                formatter.format(this.avg_temp)+"A");
+                formatter.format(this.avg_current)+"A");
 
         ArrayList<DataPoint> graphData = new ArrayList<DataPoint>();
         for (SensorDataEntry entry : this.data) {
-            graphData.add(new DataPoint(entry.getTime(), entry.getTemperature()));
+            graphData.add(new DataPoint(entry.getTime(), entry.getCurrent()));
         }
         DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);
 

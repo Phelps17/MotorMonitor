@@ -48,6 +48,7 @@ public class MainGenerator {
         data.addDoubleProperty("time");
         data.addDoubleProperty("vibration");
         data.addDoubleProperty("temperature");
+        data.addDoubleProperty("current");
 
         return data;
     }

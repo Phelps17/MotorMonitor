@@ -16,6 +16,7 @@ public class SensorDataEntry {
     private Double time;
     private Double vibration;
     private Double temperature;
+    private Double current;
 
     // KEEP FIELDS - put your custom fields here
     // KEEP FIELDS END
@@ -27,13 +28,14 @@ public class SensorDataEntry {
         this.id = id;
     }
 
-    public SensorDataEntry(Long id, String module_access_name, java.util.Date date, Double time, Double vibration, Double temperature) {
+    public SensorDataEntry(Long id, String module_access_name, java.util.Date date, Double time, Double vibration, Double temperature, Double current) {
         this.id = id;
         this.module_access_name = module_access_name;
         this.date = date;
         this.time = time;
         this.vibration = vibration;
         this.temperature = temperature;
+        this.current = current;
     }
 
     public Long getId() {
@@ -84,6 +86,14 @@ public class SensorDataEntry {
 
     public void setTemperature(Double temperature) {
         this.temperature = temperature;
+    }
+
+    public Double getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Double current) {
+        this.current = current;
     }
 
     // KEEP METHODS - put your custom methods here

@@ -34,6 +34,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import android.view.ViewGroup;
 import android.view.MotionEvent;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -58,17 +59,17 @@ public class MainActivity extends AppCompatActivity
         this.dc = new DatabaseController(this);
         this.m_Text = "";
 
-        /*this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vr3hfue3", "12345", "Main Valve 1", ""));
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65fadasdafue3", "12345", "Main Valve 2", ""));
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65fx43r3hfue3", "12345", "Main Valve 3", ""));
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vrasddqf", "12345", "Overflow Valve 1", ""));
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "76b733hfe0ue3", "12345", "Front Office AC", ""));*/
+        /*this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vr3hfue3", "12345", "Main Valve 1", "No notes saved."));
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65fadasdafue3", "12345", "Main Valve 2", "No notes saved."));
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vrasddqf", "12345", "Overflow Valve", "No notes saved."));
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "76b733hfe0ue3", "12345", "Front Office AC", "No notes saved."));
 
-        /*for (SensorModule module : dc.getSensorModules()) {
+        for (SensorModule module : dc.getSensorModules()) {
             for (int i = 0; i < 50; i++) {
                 double vibration = 75 + Math.random() * 50;
-                double temperature = 85 + Math.random()*40;
-                SensorDataEntry data = new SensorDataEntry((long) 0, module.getAccess_name(), new Date(), (double) i, vibration, temperature);
+                double temperature = 85 + Math.random()*20;
+                double current = 150 + Math.random()*10;
+                SensorDataEntry data = new SensorDataEntry((long) 0, module.getAccess_name(), new Date(), (double) i, vibration, temperature, current);
                 data.setId(this.dc.getNextDataEntryId());
                 this.dc.addDataEntry(data);
             }

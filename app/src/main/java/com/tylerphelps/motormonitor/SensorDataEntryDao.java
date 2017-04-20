@@ -29,6 +29,7 @@ public class SensorDataEntryDao extends AbstractDao<SensorDataEntry, Long> {
         public final static Property Time = new Property(3, Double.class, "time", false, "TIME");
         public final static Property Vibration = new Property(4, Double.class, "vibration", false, "VIBRATION");
         public final static Property Temperature = new Property(5, Double.class, "temperature", false, "TEMPERATURE");
+        public final static Property Current = new Property(6, Double.class, "current", false, "CURRENT");
     };
 
 
@@ -49,7 +50,8 @@ public class SensorDataEntryDao extends AbstractDao<SensorDataEntry, Long> {
                 "\"DATE\" INTEGER," + // 2: date
                 "\"TIME\" REAL," + // 3: time
                 "\"VIBRATION\" REAL," + // 4: vibration
-                "\"TEMPERATURE\" REAL);"); // 5: temperature
+                "\"TEMPERATURE\" REAL," + // 5: temperature
+                "\"CURRENT\" REAL);"); // 6: current
     }
 
     /** Drops the underlying database table. */
@@ -88,6 +90,11 @@ public class SensorDataEntryDao extends AbstractDao<SensorDataEntry, Long> {
         if (temperature != null) {
             stmt.bindDouble(6, temperature);
         }
+ 
+        Double current = entity.getCurrent();
+        if (current != null) {
+            stmt.bindDouble(7, current);
+        }
     }
 
     /** @inheritdoc */
@@ -105,7 +112,8 @@ public class SensorDataEntryDao extends AbstractDao<SensorDataEntry, Long> {
             cursor.isNull(offset + 2) ? null : new java.util.Date(cursor.getLong(offset + 2)), // date
             cursor.isNull(offset + 3) ? null : cursor.getDouble(offset + 3), // time
             cursor.isNull(offset + 4) ? null : cursor.getDouble(offset + 4), // vibration
-            cursor.isNull(offset + 5) ? null : cursor.getDouble(offset + 5) // temperature
+            cursor.isNull(offset + 5) ? null : cursor.getDouble(offset + 5), // temperature
+            cursor.isNull(offset + 6) ? null : cursor.getDouble(offset + 6) // current
         );
         return entity;
     }
@@ -119,6 +127,7 @@ public class SensorDataEntryDao extends AbstractDao<SensorDataEntry, Long> {
         entity.setTime(cursor.isNull(offset + 3) ? null : cursor.getDouble(offset + 3));
         entity.setVibration(cursor.isNull(offset + 4) ? null : cursor.getDouble(offset + 4));
         entity.setTemperature(cursor.isNull(offset + 5) ? null : cursor.getDouble(offset + 5));
+        entity.setCurrent(cursor.isNull(offset + 6) ? null : cursor.getDouble(offset + 6));
      }
     
     /** @inheritdoc */
