@@ -34,6 +34,8 @@
         <activity
             android:name=".barcode.BarcodeCaptureActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".CompareGroupGraphs">
+        </activity>
     </application>
 
 </manifest>
