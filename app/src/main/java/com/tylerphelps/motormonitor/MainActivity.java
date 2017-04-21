@@ -59,13 +59,13 @@ public class MainActivity extends AppCompatActivity
         this.dc = new DatabaseController(this);
         this.m_Text = "";
 
-        /*this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vr3hfue3", "12345", "Main Valve 1", "No notes saved."));
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65fadasdafue3", "12345", "Main Valve 2", "No notes saved."));
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vrasddqf", "12345", "Overflow Valve", "No notes saved."));
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "76b733hfe0ue3", "12345", "Front Office AC", "No notes saved."));
+        /*this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vr3hfue3", "12345", "Main Valve 1", "", "No notes saved."));
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65fadasdafue3", "12345", "Main Valve 2", "", "No notes saved."));
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vrasddqf", "12345", "Overflow Valve", "", "No notes saved."));
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "76b733hfe0ue3", "12345", "Front Office AC", "", "No notes saved."));
 
         for (SensorModule module : dc.getSensorModules()) {
-            for (int i = 0; i < 50; i++) {
+            for (int i = 0; i < 250; i++) {
                 double vibration = 75 + Math.random() * 50;
                 double temperature = 85 + Math.random()*20;
                 double current = 150 + Math.random()*10;
@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity
                             //(Long id, String access_name, String access_passcode,
                             // String viewable_name, String details)
                             SensorModule newModule = new SensorModule(newId, json.getString("access_name"),
-                                    json.getString("access_passcode"), json.getString("viewable_name"),
+                                    json.getString("access_passcode"), json.getString("viewable_name"), "",
                                     "No saved notes.");
 
                             checkForModulePassword(newModule);

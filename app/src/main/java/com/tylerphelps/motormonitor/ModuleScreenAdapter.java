@@ -213,11 +213,28 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
     private void setUpGroupDropdown(Spinner spinner) {
         List<String> groups = new ArrayList<String>();
         groups.add("No Group");
+        for (SensorModule sm : this.dc.getSensorModules()) {
+            if (!groups.contains(sm.getGroup()) && !sm.getGroup().equals("")) {
+                groups.add(sm.getGroup());
+            }
+        }
         groups.add("Create New Group");
+
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item, groups);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
+
+        int spinnerPosition = 0;
+
+        if (!this.module.getGroup().equals("")) {
+            spinnerPosition = dataAdapter.getPosition(this.module.getGroup());
+        }
+        spinner.setSelection(spinnerPosition);
+
+        OnGroupSelectedListener listener = new OnGroupSelectedListener();
+        listener.setUpAdapter(this.dc, this.module, this.parent);
+        spinner.setOnItemSelectedListener(listener);
     }
 
     private void changeSensorName(final SensorModule module, final DatabaseController dc, final MainActivity parent) {

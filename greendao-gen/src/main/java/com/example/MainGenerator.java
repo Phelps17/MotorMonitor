@@ -35,6 +35,7 @@ public class MainGenerator {
         module.addStringProperty("access_name").notNull();
         module.addStringProperty("access_passcode").notNull();
         module.addStringProperty("viewable_name").notNull();
+        module.addStringProperty("group");
         module.addStringProperty("details");
 
         return module;

@@ -16,6 +16,7 @@ public class SensorModule {
     private String access_passcode;
     /** Not-null value. */
     private String viewable_name;
+    private String group;
     private String details;
 
     // KEEP FIELDS - put your custom fields here
@@ -28,11 +29,12 @@ public class SensorModule {
         this.id = id;
     }
 
-    public SensorModule(Long id, String access_name, String access_passcode, String viewable_name, String details) {
+    public SensorModule(Long id, String access_name, String access_passcode, String viewable_name, String group, String details) {
         this.id = id;
         this.access_name = access_name;
         this.access_passcode = access_passcode;
         this.viewable_name = viewable_name;
+        this.group = group;
         this.details = details;
     }
 
@@ -72,6 +74,14 @@ public class SensorModule {
     /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setViewable_name(String viewable_name) {
         this.viewable_name = viewable_name;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 
     public String getDetails() {
