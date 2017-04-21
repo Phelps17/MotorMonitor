@@ -3,10 +3,9 @@ package com.tylerphelps.motormonitor;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import android.view.ViewGroup;
-
 import java.util.ArrayList;
 import java.util.List;
+import de.greenrobot.dao.query.DeleteQuery;
 
 /**
  * Created by TylerPhelps on 3/27/17.
@@ -54,6 +53,7 @@ public class DatabaseController {
 
     public boolean deleteSensorModule(SensorModule sm) {
         Log.d("DB", "Deleteing sensor module." + sm.getId());
+        deleteDataEntryForModule(sm);
         sensorModuleDao.delete(sm);
         Log.d("DB", "removed successfully");
 
@@ -79,6 +79,14 @@ public class DatabaseController {
 
         closeReopenDatabase();
         return true;
+    }
+
+    public void deleteDataEntryForModule(SensorModule sm) {
+        final DeleteQuery<SensorDataEntry> tableDeleteQuery = daoSession.queryBuilder(SensorDataEntry.class)
+                .where(SensorDataEntryDao.Properties.Module_access_name.eq(sm.getAccess_name()))
+                .buildDelete();
+        tableDeleteQuery.executeDeleteWithoutDetachingEntities();
+        daoSession.clear();
     }
 
     public List<SensorModule> getSensorModules() { return this.sensorModuleDao.loadAll(); }

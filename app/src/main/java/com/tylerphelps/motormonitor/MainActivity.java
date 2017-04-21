@@ -59,22 +59,6 @@ public class MainActivity extends AppCompatActivity
         this.dc = new DatabaseController(this);
         this.m_Text = "";
 
-        /*this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vr3hfue3", "12345", "Main Valve 1", "", "No notes saved."));
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65fadasdafue3", "12345", "Main Valve 2", "", "No notes saved."));
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vrasddqf", "12345", "Overflow Valve", "", "No notes saved."));
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "76b733hfe0ue3", "12345", "Front Office AC", "", "No notes saved."));
-
-        for (SensorModule module : dc.getSensorModules()) {
-            for (int i = 0; i < 250; i++) {
-                double vibration = 75 + Math.random() * 50;
-                double temperature = 85 + Math.random()*20;
-                double current = 150 + Math.random()*10;
-                SensorDataEntry data = new SensorDataEntry((long) 0, module.getAccess_name(), new Date(), (double) i, vibration, temperature, current);
-                data.setId(this.dc.getNextDataEntryId());
-                this.dc.addDataEntry(data);
-            }
-        }*/
-
         refreshScreens(0);
     }
 
@@ -109,10 +93,15 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             //nothing
-        } else if (id == R.id.nav_add_module) {
+        }
+        else if (id == R.id.nav_add_module) {
             addNewModule();
-        } else if (id == R.id.nav_send) {
+        }
+        else if (id == R.id.nav_send) {
             sendFeedbackEmail();
+        }
+        else if (id == R.id.nav_demo_data) {
+            addDemoData();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -211,7 +200,11 @@ public class MainActivity extends AppCompatActivity
         try {
             showModuleScreens(this.dc.getSensorModules().get(moduleIndex));
         }
-        catch (Exception e) {System.out.println(e.toString());}
+        catch (Exception e) {
+            System.out.println(e.toString());
+            ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
+            verticleScroller.removeAllViewsInLayout();
+        }
     }
 
     private void sendFeedbackEmail() {
@@ -319,6 +312,29 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(getBaseContext(), "Error: Could Not Add New Sensor Module",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void addDemoData() {
+        Toast.makeText(getBaseContext(), "Adding Demo Data. Please wait...",
+                Toast.LENGTH_LONG).show();
+
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vr3hfue3", "12345", "Main Valve 1", "", "No notes saved."));
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65fadasdafue3", "12345", "Main Valve 2", "", "No notes saved."));
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vrasddqf", "12345", "Overflow Valve", "", "No notes saved."));
+        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "76b733hfe0ue3", "12345", "Front Office AC", "", "No notes saved."));
+
+        for (SensorModule module : dc.getSensorModules()) {
+            for (int i = 0; i < 250; i++) {
+                double vibration = 75 + (Math.cos(i/4) + (-0.5 + Math.random()));
+                double temperature = 80 + Math.sin(i/10) + (-0.5 + Math.random());
+                double current = 150 + Math.random()*10;
+                SensorDataEntry data = new SensorDataEntry((long) 0, module.getAccess_name(), new Date(), (double) i, vibration, temperature, current);
+                data.setId(this.dc.getNextDataEntryId());
+                this.dc.addDataEntry(data);
+            }
+        }
+
+        refreshScreens(0);
     }
 }
 

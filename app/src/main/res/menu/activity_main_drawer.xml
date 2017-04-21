@@ -11,6 +11,10 @@
                 android:id="@+id/nav_add_module"
                 android:icon="@drawable/ic_menu_manage"
                 android:title="Add Module" />
+            <item
+                android:id="@+id/nav_demo_data"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Add Demo Data" />
         </menu>
     </item>
 

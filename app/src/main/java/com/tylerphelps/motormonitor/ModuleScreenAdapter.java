@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -19,8 +18,9 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import android.widget.Spinner;
-import android.widget.Toast;
+import java.text.SimpleDateFormat;
 import android.widget.Button;
+import android.graphics.Color;
 
 /**
  * Created by TylerPhelps on 3/4/17.
@@ -32,7 +32,9 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
     private MainActivity parent;
     private double avg_temp, vibrations, avg_current;
     private ArrayList<SensorDataEntry> data;
-    private NumberFormat formatter = new DecimalFormat("#0.00");
+    private double[] groupAverages;
+    private NumberFormat formatter = new DecimalFormat("#,##0.00");
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat("mm/dd hh:mm");
 
     public ModuleScreenAdapter(Context context, ArrayList<Integer> modules) {
         super(context, R.layout.module_main_view, modules);
@@ -53,6 +55,8 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         }
         this.avg_temp = this.avg_temp / count;
         this.avg_current = this.avg_current / count;
+
+        this.groupAverages = getGroupAverages(this.module.getGroup());
     }
 
     private static class ViewHolder {
@@ -126,7 +130,26 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
     }
 
     private void populateVibrationGraph(View convertView) {
-        ((TextView) convertView.findViewById(R.id.vibrationTextView)).setText(formatter.format(this.vibrations/1000)+"k Vibrations");
+        ((TextView) convertView.findViewById(R.id.vibrationTextView)).setText(
+                formatter.format(this.vibrations/1000)+"k Vibrations");
+
+        TextView tv = ((TextView) convertView.findViewById(R.id.vibrationChangesTextView));
+        if (this.groupAverages == null) {
+            tv.setText("No Group Data");
+            tv.setTextColor(Color.BLACK);
+        }
+        else {
+            double difference = this.groupAverages[2] - this.vibrations;
+            double percentage = (Math.abs(difference) / this.groupAverages[2]) * 100;
+            if (difference <= 0) {
+                tv.setText(formatter.format(difference) + " (" + formatter.format(percentage) +"%)");
+                tv.setTextColor(Color.GREEN);
+            }
+            else {
+                tv.setText("+" + formatter.format(difference) + " (" + formatter.format(percentage) +"%)");
+                tv.setTextColor(Color.RED);
+            }
+        }
 
         ArrayList<DataPoint> graphData = new ArrayList<DataPoint>();
         for (SensorDataEntry entry : this.data) {
@@ -138,11 +161,30 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
         graph.addSeries(series);
         graph.getViewport().setScalable(true);
+        graph.getViewport().setScalableY(true);
     }
 
     private void populateTemperatureGraph(View convertView) {
         ((TextView) convertView.findViewById(R.id.temperatureTextView)).setText("Average Temperature: " +
                 formatter.format(this.avg_temp)+"°F");
+
+        TextView tv = ((TextView) convertView.findViewById(R.id.temperatureChangesTextView));
+        if (this.groupAverages == null) {
+            tv.setText("No Group Data");
+            tv.setTextColor(Color.BLACK);
+        }
+        else {
+            double difference = this.groupAverages[0] - this.avg_temp;
+            double percentage = (Math.abs(difference) / this.groupAverages[0]) * 100;
+            if (difference <= 0) {
+                tv.setText(formatter.format(difference) + "°F (" + formatter.format(percentage) +"%)");
+                tv.setTextColor(Color.GREEN);
+            }
+            else {
+                tv.setText("+" + formatter.format(difference) + "°F (" + formatter.format(percentage) +"%)");
+                tv.setTextColor(Color.RED);
+            }
+        }
 
         ArrayList<DataPoint> graphData = new ArrayList<DataPoint>();
         for (SensorDataEntry entry : this.data) {
@@ -154,11 +196,30 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
         graph.addSeries(series);
         graph.getViewport().setScalable(true);
+        graph.getViewport().setScalableY(true);
     }
 
     private void populateElectricCurrentGraph(View convertView) {
         ((TextView) convertView.findViewById(R.id.electricCurrentTextView)).setText("Average Current: " +
                 formatter.format(this.avg_current)+"A");
+
+        TextView tv = ((TextView) convertView.findViewById(R.id.electricCurrentChangesTextView));
+        if (this.groupAverages == null) {
+            tv.setText("No Group Data");
+            tv.setTextColor(Color.BLACK);
+        }
+        else {
+            double difference = this.groupAverages[1] - this.avg_current;
+            double percentage = (Math.abs(difference) / this.groupAverages[1]) * 100;
+            if (difference <= 0) {
+                tv.setText(formatter.format(difference) + "A (" + formatter.format(percentage) +"%)");
+                tv.setTextColor(Color.GREEN);
+            }
+            else {
+                tv.setText("+" + formatter.format(difference) + "A (" + formatter.format(percentage) +"%)");
+                tv.setTextColor(Color.RED);
+            }
+        }
 
         ArrayList<DataPoint> graphData = new ArrayList<DataPoint>();
         for (SensorDataEntry entry : this.data) {
@@ -170,6 +231,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
         graph.addSeries(series);
         graph.getViewport().setScalable(true);
+        graph.getViewport().setScalableY(true);
     }
 
     private void setupSensorDetails(View convertView) {
@@ -206,6 +268,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
             @Override
             public void onClick(View v) {
                 deleteSensor(module, dc, myParent);
+                parent.refreshScreens(module);
             }
         });
     }
@@ -302,5 +365,34 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
             }
         });
         builder.show();
+    }
+
+    private double[] getGroupAverages(String groupName) {
+        if (groupName.equals("")) return null;
+
+        int count = 0;
+        int sensorsInGroup = 0;
+        double[] averages = new double[3];
+
+        for (SensorModule sm : this.dc.getSensorModules()) {
+            if (sm.getGroup().equals(groupName)) {
+                sensorsInGroup++;
+                for (SensorDataEntry entry : this.dc.getDataFromModule(sm)) {
+                    count++;
+                    averages[0] += entry.getTemperature();
+                    averages[1] += entry.getCurrent();
+                    averages[2] += entry.getVibration();
+                }
+            }
+        }
+
+        averages[0] = averages[0] / count;
+        averages[1] = averages[1] / count;
+        averages[2] = averages[2] / sensorsInGroup;
+
+        if (count != 0) {
+            return averages;
+        }
+        else return null;
     }
 }
