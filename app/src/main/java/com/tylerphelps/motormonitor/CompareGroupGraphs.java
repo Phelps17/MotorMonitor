@@ -43,15 +43,15 @@ public class CompareGroupGraphs extends AppCompatActivity {
 
         switch (type) {
             case "temp":
-                //getActionBar().setTitle("Temperature Analytics");
+                getSupportActionBar().setTitle("Temperature Analytics");
                 drawTempGraph(sm, graph);
                 break;
             case "current":
-                //getActionBar().setTitle("Electric Current Analytics");
+                getSupportActionBar().setTitle("Electric Current Analytics");
                 drawCurrentGraph(sm, graph);
                 break;
             case "vibration":
-                //getActionBar().setTitle("Vibration Analytics");
+                getSupportActionBar().setTitle("Vibration Analytics");
                 drawVibrationGraph(sm, graph);
                 break;
         }
@@ -90,7 +90,7 @@ public class CompareGroupGraphs extends AppCompatActivity {
             for (SensorModule module : this.dc.getSensorModules()) {
                 if (module.getGroup().equals(sm.getGroup())) {
                     ArrayList<DataPoint> graphData = new ArrayList<DataPoint>();
-                    for (SensorDataEntry entry : this.dc.getDataFromModule(sm)) {
+                    for (SensorDataEntry entry : this.dc.getDataFromModule(module)) {
                         graphData.add(new DataPoint(entry.getTime(), entry.getTemperature()));
                     }
                     DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);

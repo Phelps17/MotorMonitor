@@ -39,7 +39,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseController dc;
-    private String m_Text;
+    private int currentDisplayedModule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar dataToolbar = (Toolbar) findViewById(R.id.toolbar2);
 
         this.dc = new DatabaseController(this);
-        this.m_Text = "";
+        this.currentDisplayedModule = 0;
 
         refreshScreens(0);
     }
@@ -118,7 +118,8 @@ public class MainActivity extends AppCompatActivity
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
             Log.e("On Config Change","LANDSCAPE");
             Intent intent = new Intent(this, CompareGroupGraphs.class);
-            intent.putExtra("moduleAccessName", "65ft3vr3hfue3");
+            intent.putExtra("moduleAccessName",
+                    this.dc.getSensorModules().get(this.currentDisplayedModule).getAccess_name());
             intent.putExtra("graphType", "temp");
             startActivity(intent);
 
@@ -168,6 +169,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showModuleScreens(SensorModule module) {
+        ArrayList<SensorModule> modules = new ArrayList<>(dc.getSensorModules());
+        for (int i = 0; i < modules.size(); i++) {
+            if (module.getAccess_name().equals(modules.get(i).getAccess_name())) {
+                this.currentDisplayedModule = i;
+                break;
+            }
+        }
+
         ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
         verticleScroller.removeAllViewsInLayout();
         ArrayList<Integer> screensNeeded = new ArrayList<Integer>();
@@ -194,6 +203,8 @@ public class MainActivity extends AppCompatActivity
                 return false;
             }
         });
+
+        refreshScreens(module);
     }
 
     public void refreshScreens(SensorModule sm) {
@@ -206,8 +217,6 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
         }
-
-        refreshScreens(moduleIndex);
     }
 
     public void refreshScreens(int moduleIndex) {
@@ -223,6 +232,8 @@ public class MainActivity extends AppCompatActivity
             ListView verticleScroller = (ListView) findViewById(R.id.module_screen_scroller);
             verticleScroller.removeAllViewsInLayout();
         }
+
+        this.currentDisplayedModule = moduleIndex;
     }
 
     private void sendFeedbackEmail() {
