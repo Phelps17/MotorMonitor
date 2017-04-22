@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.text.InputType;
 import android.content.DialogInterface;
-
+import android.content.res.Configuration;
 import com.google.android.gms.analytics.ExceptionParser;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -56,6 +56,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Toolbar dataToolbar = (Toolbar) findViewById(R.id.toolbar2);
+
         this.dc = new DatabaseController(this);
         this.m_Text = "";
 
@@ -74,7 +77,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         return true;
     }
 
@@ -107,6 +109,22 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
+            Log.e("On Config Change","LANDSCAPE");
+            Intent intent = new Intent(this, CompareGroupGraphs.class);
+            intent.putExtra("moduleAccessName", "65ft3vr3hfue3");
+            intent.putExtra("graphType", "temp");
+            startActivity(intent);
+
+        }else{
+            Log.e("On Config Change","PORTRAIT");
+        }
     }
 
     private void showThumbnailScroller() {

@@ -19,11 +19,13 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN"
+                        android:configChanges="keyboardHidden|orientation|screenSize"/>
+                <category android:name="android.intent.category.LAUNCHER"
+                          android:configChanges="keyboardHidden|orientation|screenSize"/>
             </intent-filter>
         </activity>
         <activity
@@ -34,7 +36,8 @@
         <activity
             android:name=".barcode.BarcodeCaptureActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".CompareGroupGraphs">
+        <activity android:name=".CompareGroupGraphs"
+                  android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
     </application>
 

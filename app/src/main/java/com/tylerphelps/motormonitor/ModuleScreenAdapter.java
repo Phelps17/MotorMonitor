@@ -34,7 +34,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
     private ArrayList<SensorDataEntry> data;
     private double[] groupAverages;
     private NumberFormat formatter = new DecimalFormat("#,##0.00");
-    private SimpleDateFormat dateFormatter = new SimpleDateFormat("mm/dd hh:mm");
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat("hh:mm");
 
     public ModuleScreenAdapter(Context context, ArrayList<Integer> modules) {
         super(context, R.layout.module_main_view, modules);
