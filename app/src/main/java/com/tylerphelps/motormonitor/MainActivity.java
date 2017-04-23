@@ -1,5 +1,6 @@
 package com.tylerphelps.motormonitor;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ViewFlipper;
 import java.security.acl.Group;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import android.content.Intent;
 import android.text.InputType;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseController dc;
     private int currentDisplayedModule;
+    private Toolbar dataToolbar;
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd hh:mm:ss");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +61,21 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Toolbar dataToolbar = (Toolbar) findViewById(R.id.toolbar2);
+        this.dataToolbar = (Toolbar) findViewById(R.id.toolbar2);
+        dataToolbar.inflateMenu(R.menu.data_datetime);
+        dataToolbar.setTitleTextColor(Color.DKGRAY);
+        dataToolbar.setTitle("No Data Loaded");
+        /*toolbar2 menu items CallBack listener
+        dataToolbar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem arg0) {
+                if(arg0.getItemId() == R.id.item_id){
+
+                }
+                return false;
+            }
+        });*/
 
         this.dc = new DatabaseController(this);
         this.currentDisplayedModule = 0;
@@ -126,6 +144,10 @@ public class MainActivity extends AppCompatActivity
         }else{
             Log.e("On Config Change","PORTRAIT");
         }
+    }
+
+    public void updateDataRangeToolbar(Date date1, Date date2) {
+        this.dataToolbar.setTitle(this.dateFormatter.format(date1) + " - " + this.dateFormatter.format(date2));
     }
 
     private void showThumbnailScroller() {

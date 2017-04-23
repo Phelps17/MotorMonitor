@@ -34,7 +34,6 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
     private ArrayList<SensorDataEntry> data;
     private double[] groupAverages;
     private NumberFormat formatter = new DecimalFormat("#,##0.00");
-    private SimpleDateFormat dateFormatter = new SimpleDateFormat("hh:mm");
 
     public ModuleScreenAdapter(Context context, ArrayList<Integer> modules) {
         super(context, R.layout.module_main_view, modules);
@@ -45,6 +44,8 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         this.dc = dc;
         this.data = new ArrayList(this.dc.getDataFromModule(module));
         this.parent = parent;
+        this.parent.updateDataRangeToolbar(this.data.get(0).getDate(), this.data.get(this.data.size()-1).getDate());
+
         int count = 0;
 
         for (SensorDataEntry entry : this.data) {
