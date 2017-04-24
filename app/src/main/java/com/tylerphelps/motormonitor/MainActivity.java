@@ -18,15 +18,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ViewFlipper;
-import java.security.acl.Group;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import android.content.Intent;
 import android.text.InputType;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
-import com.google.android.gms.analytics.ExceptionParser;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.tylerphelps.motormonitor.barcode.BarcodeCaptureActivity;
@@ -37,6 +34,7 @@ import java.text.NumberFormat;
 import android.view.ViewGroup;
 import android.view.MotionEvent;
 import java.util.Date;
+import android.view.MenuItem.OnMenuItemClickListener;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,27 +60,18 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        this.dataToolbar = (Toolbar) findViewById(R.id.toolbar2);
-        dataToolbar.inflateMenu(R.menu.data_datetime);
-        dataToolbar.setTitleTextColor(Color.GRAY);
-        dataToolbar.setTitle("No Data Loaded");
-        /*toolbar2 menu items CallBack listener
-        dataToolbar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-            @Override
-            public boolean onMenuItemClick(MenuItem arg0) {
-                if(arg0.getItemId() == R.id.item_id){
-
-                }
-                return false;
-            }
-        });*/
+        setUpDataToolbar();
 
         this.dc = new DatabaseController(this);
         this.currentDisplayedModule = 0;
         this.graphType = "vibration";
 
         refreshScreens(0);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
     }
 
     @Override
@@ -93,11 +82,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
     }
 
     @Override
@@ -146,6 +130,14 @@ public class MainActivity extends AppCompatActivity
         }else{
             Log.e("On Config Change","PORTRAIT");
         }
+    }
+
+    private void setUpDataToolbar() {
+        this.dataToolbar = (Toolbar) findViewById(R.id.toolbar2);
+        dataToolbar.inflateMenu(R.menu.data_datetime);
+        dataToolbar.setTitleTextColor(Color.GRAY);
+        dataToolbar.setTitle("No Data Loaded");
+        //TODO implement refresh button here
     }
 
     public void updateDataRangeToolbar(Date date1, Date date2) {
