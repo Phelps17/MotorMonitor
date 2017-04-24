@@ -149,7 +149,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
             double percentage = (Math.abs(difference) / this.groupAverages[2]) * 100;
             if (difference <= 0) {
                 tv.setText(formatter.format(difference) + " (" + formatter.format(percentage) +"%)");
-                tv.setTextColor(Color.GREEN);
+                tv.setTextColor(Color.parseColor("#008000"));
             }
             else {
                 tv.setText("+" + formatter.format(difference) + " (" + formatter.format(percentage) +"%)");
@@ -186,7 +186,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
             double percentage = (Math.abs(difference) / this.groupAverages[0]) * 100;
             if (difference <= 0) {
                 tv.setText(formatter.format(difference) + "°F (" + formatter.format(percentage) +"%)");
-                tv.setTextColor(Color.GREEN);
+                tv.setTextColor(Color.parseColor("#008000"));
             }
             else {
                 tv.setText("+" + formatter.format(difference) + "°F (" + formatter.format(percentage) +"%)");
@@ -223,7 +223,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
             double percentage = (Math.abs(difference) / this.groupAverages[1]) * 100;
             if (difference <= 0) {
                 tv.setText(formatter.format(difference) + "A (" + formatter.format(percentage) +"%)");
-                tv.setTextColor(Color.GREEN);
+                tv.setTextColor(Color.parseColor("#008000"));
             }
             else {
                 tv.setText("+" + formatter.format(difference) + "A (" + formatter.format(percentage) +"%)");

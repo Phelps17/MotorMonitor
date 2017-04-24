@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity
 
     public void updateDataRangeToolbar(Date date1, Date date2) {
         try {
-            this.dataToolbar.setTitle(this.dateFormatter.format(date1) + " - " + this.dateFormatter.format(date2));
+            this.dataToolbar.setTitle("Range: " + this.dateFormatter.format(date1) + " - " + this.dateFormatter.format(date2));
         }
         catch (Exception e) {
             this.dataToolbar.setTitle("No Data to Display.");
