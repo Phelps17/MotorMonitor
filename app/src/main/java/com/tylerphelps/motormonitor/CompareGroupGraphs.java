@@ -123,7 +123,7 @@ public class CompareGroupGraphs extends AppCompatActivity {
             for (SensorModule module : this.dc.getSensorModules()) {
                 if (module.getGroup().equals(sm.getGroup())) {
                     ArrayList<DataPoint> graphData = new ArrayList<DataPoint>();
-                    for (SensorDataEntry entry : this.dc.getDataFromModule(sm)) {
+                    for (SensorDataEntry entry : this.dc.getDataFromModule(module)) {
                         graphData.add(new DataPoint(entry.getTime(), entry.getCurrent()));
                     }
                     DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);
@@ -156,7 +156,7 @@ public class CompareGroupGraphs extends AppCompatActivity {
             for (SensorModule module : this.dc.getSensorModules()) {
                 if (module.getGroup().equals(sm.getGroup())) {
                     ArrayList<DataPoint> graphData = new ArrayList<DataPoint>();
-                    for (SensorDataEntry entry : this.dc.getDataFromModule(sm)) {
+                    for (SensorDataEntry entry : this.dc.getDataFromModule(module)) {
                         graphData.add(new DataPoint(entry.getTime(), entry.getVibration()));
                     }
                     DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);

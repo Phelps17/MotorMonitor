@@ -34,7 +34,8 @@ import java.text.NumberFormat;
 import android.view.ViewGroup;
 import android.view.MotionEvent;
 import java.util.Date;
-import android.view.MenuItem.OnMenuItemClickListener;
+import android.support.v7.view.menu.ActionMenuItemView;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -89,7 +90,13 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                refreshData();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -137,7 +144,20 @@ public class MainActivity extends AppCompatActivity
         dataToolbar.inflateMenu(R.menu.data_datetime);
         dataToolbar.setTitleTextColor(Color.GRAY);
         dataToolbar.setTitle("No Data Loaded");
-        //TODO implement refresh button here
+
+        ActionMenuItemView imageButton = (ActionMenuItemView) this.dataToolbar.findViewById(R.id.action_refresh);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refreshData();
+            }
+        });
+    }
+
+    private void refreshData() {
+        Toast.makeText(getBaseContext(), "Refreshing Data...",
+                Toast.LENGTH_LONG).show();
     }
 
     public void updateDataRangeToolbar(Date date1, Date date2) {
@@ -365,26 +385,32 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void addDemoData() {
-        Toast.makeText(getBaseContext(), "Adding Demo Data. Please wait...",
-                Toast.LENGTH_LONG).show();
+        if (this.dc.getSensorModules().size() == 0) {
+            Toast.makeText(getBaseContext(), "Adding Demo Data. Please wait...",
+                    Toast.LENGTH_LONG).show();
 
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vr3hfue3", "12345", "Main Valve 1", "", "No notes saved."));
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65fadasdafue3", "12345", "Main Valve 2", "", "No notes saved."));
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vrasddqf", "12345", "Overflow Valve", "", "No notes saved."));
-        this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "76b733hfe0ue3", "12345", "Front Office AC", "", "No notes saved."));
+            this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vr3hfue3", "12345", "Main Valve 1", "", "No notes saved."));
+            this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65fadasdafue3", "12345", "Main Valve 2", "", "No notes saved."));
+            this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "65ft3vrasddqf", "12345", "Overflow Valve", "", "No notes saved."));
+            this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "76b733hfe0ue3", "12345", "Front Office AC", "", "No notes saved."));
 
-        for (SensorModule module : dc.getSensorModules()) {
-            for (int i = 0; i < 250; i++) {
-                double vibration = 75 + (Math.cos(i/4) + (-0.5 + Math.random()));
-                double temperature = 80 + Math.sin(i/10) + (-0.5 + Math.random());
-                double current = 150 + Math.random()*10;
-                SensorDataEntry data = new SensorDataEntry((long) 0, module.getAccess_name(), new Date(), (double) i, vibration, temperature, current);
-                data.setId(this.dc.getNextDataEntryId());
-                this.dc.addDataEntry(data);
+            for (SensorModule module : dc.getSensorModules()) {
+                for (int i = 0; i < 250; i++) {
+                    double vibration = 75 + (Math.cos(i/4) + (-0.5 + Math.random()));
+                    double temperature = 80 + Math.sin(i/10) + (-0.5 + Math.random());
+                    double current = 150 + Math.random()*10;
+                    SensorDataEntry data = new SensorDataEntry((long) 0, module.getAccess_name(), new Date(), (double) i, vibration, temperature, current);
+                    data.setId(this.dc.getNextDataEntryId());
+                    this.dc.addDataEntry(data);
+                }
             }
-        }
 
-        refreshScreens(0);
+            refreshScreens(0);
+        }
+        else {
+            Toast.makeText(getBaseContext(), "Demo is not available.",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 }
 
