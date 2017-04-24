@@ -44,7 +44,12 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         this.dc = dc;
         this.data = new ArrayList(this.dc.getDataFromModule(module));
         this.parent = parent;
-        this.parent.updateDataRangeToolbar(this.data.get(0).getDate(), this.data.get(this.data.size()-1).getDate());
+        try {
+            this.parent.updateDataRangeToolbar(this.data.get(0).getDate(), this.data.get(this.data.size() - 1).getDate());
+        }
+        catch (Exception e) {
+            this.parent.dataToolbar.setTitle("No Data to Display.");
+        }
 
         int count = 0;
 
@@ -163,6 +168,8 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         graph.addSeries(series);
         graph.getViewport().setScalable(true);
         graph.getViewport().setScalableY(true);
+
+        this.parent.graphType = "vibration";
     }
 
     private void populateTemperatureGraph(View convertView) {
@@ -198,6 +205,8 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         graph.addSeries(series);
         graph.getViewport().setScalable(true);
         graph.getViewport().setScalableY(true);
+
+        this.parent.graphType = "temp";
     }
 
     private void populateElectricCurrentGraph(View convertView) {
@@ -233,6 +242,8 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
         graph.addSeries(series);
         graph.getViewport().setScalable(true);
         graph.getViewport().setScalableY(true);
+
+        this.parent.graphType = "current";
     }
 
     private void setupSensorDetails(View convertView) {

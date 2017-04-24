@@ -42,8 +42,9 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseController dc;
     private int currentDisplayedModule;
-    private Toolbar dataToolbar;
-    private SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd hh:mm:ss");
+    Toolbar dataToolbar;
+    String graphType;
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat("hh:mm:ss");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity
 
         this.dataToolbar = (Toolbar) findViewById(R.id.toolbar2);
         dataToolbar.inflateMenu(R.menu.data_datetime);
-        dataToolbar.setTitleTextColor(Color.DKGRAY);
+        dataToolbar.setTitleTextColor(Color.GRAY);
         dataToolbar.setTitle("No Data Loaded");
         /*toolbar2 menu items CallBack listener
         dataToolbar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity
 
         this.dc = new DatabaseController(this);
         this.currentDisplayedModule = 0;
+        this.graphType = "vibration";
 
         refreshScreens(0);
     }
@@ -138,7 +140,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, CompareGroupGraphs.class);
             intent.putExtra("moduleAccessName",
                     this.dc.getSensorModules().get(this.currentDisplayedModule).getAccess_name());
-            intent.putExtra("graphType", "temp");
+            intent.putExtra("graphType", this.graphType);
             startActivity(intent);
 
         }else{
@@ -147,7 +149,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void updateDataRangeToolbar(Date date1, Date date2) {
-        this.dataToolbar.setTitle(this.dateFormatter.format(date1) + " - " + this.dateFormatter.format(date2));
+        try {
+            this.dataToolbar.setTitle(this.dateFormatter.format(date1) + " - " + this.dateFormatter.format(date2));
+        }
+        catch (Exception e) {
+            this.dataToolbar.setTitle("No Data to Display.");
+        }
     }
 
     private void showThumbnailScroller() {

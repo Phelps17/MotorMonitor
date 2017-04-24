@@ -5,15 +5,15 @@
         <menu>
             <item
                 android:id="@+id/nav_home"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_home"
                 android:title="Home" />
             <item
                 android:id="@+id/nav_add_module"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_camera_add"
                 android:title="Add Module" />
             <item
                 android:id="@+id/nav_demo_data"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_memory"
                 android:title="Add Demo Data" />
         </menu>
     </item>
