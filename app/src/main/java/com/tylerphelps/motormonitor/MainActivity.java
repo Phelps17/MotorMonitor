@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void showThumbnailScroller() {
+    public void showThumbnailScroller() {
         ArrayList<SensorModule> modules = new ArrayList<>(dc.getSensorModules());
 
         // Set listview adapter
@@ -258,6 +258,8 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
         }
+
+        //refreshScreens(moduleIndex);
     }
 
     public void refreshScreens(int moduleIndex) {

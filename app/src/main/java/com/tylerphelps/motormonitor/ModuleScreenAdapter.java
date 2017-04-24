@@ -325,6 +325,7 @@ public class ModuleScreenAdapter extends ArrayAdapter<Integer> {
                 module.setViewable_name(input.getText().toString());
                 dc.updateSensorModule(module);
                 parent.refreshScreens(module);
+                parent.showThumbnailScroller();
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
