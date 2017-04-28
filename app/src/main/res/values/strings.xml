@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Motor Monitor Control</string>
+    <string name="app_name">Watch Dog</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_add_module">AddModuleActivity</string>
-    <string name="title_activity_groups">GroupsActivity</string>
+    <string name="title_activity_add_module">Add Module</string>
+    <string name="title_activity_groups">Groups</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
