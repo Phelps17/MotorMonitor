@@ -8,9 +8,7 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.LegendRenderer;
-
 import android.util.Log;
-import android.view.View;
 import java.util.ArrayList;
 import android.content.Intent;
 
@@ -99,6 +97,9 @@ public class CompareGroupGraphs extends AppCompatActivity {
                     if (!module.equals(sm)) {
                         series.setColor(Color.GRAY);
                     }
+                    else {
+                        series.setColor(Color.RED);
+                    }
                     graph.addSeries(series);
                 }
             }
@@ -132,6 +133,9 @@ public class CompareGroupGraphs extends AppCompatActivity {
                     if (!module.equals(sm)) {
                         series.setColor(Color.GRAY);
                     }
+                    else {
+                        series.setColor(Color.RED);
+                    }
                     graph.addSeries(series);
                 }
             }
@@ -164,6 +168,9 @@ public class CompareGroupGraphs extends AppCompatActivity {
                     series.setTitle(module.getViewable_name());
                     if (!module.equals(sm)) {
                         series.setColor(Color.GRAY);
+                    }
+                    else {
+                        series.setColor(Color.RED);
                     }
                     graph.addSeries(series);
                 }

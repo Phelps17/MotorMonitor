@@ -1,3 +1,4 @@
+import datetime
 from pubnub import Pubnub
 
 PUBNUB_PUBLISH_KEY = "pub-c-169dbe41-99f9-4a69-b358-337bd5a0d24e"
@@ -11,8 +12,14 @@ if __name__ == "__main__":
                     cipher_key='',
                     ssl_on=False
                     )
+Long id, String module_access_name, java.util.Date date, Double time, Double vibration, Double temperature, Double current
 
     while (1) :
     	print ">",
     	input_string = raw_input()
+    	date = datetime.date
+    	json = """{"access_name" : "ACCESS_NAME", "date":"DATE", "time":"TIME","vibration":"VIBRATION","temp":"TEMP","current":"CURRENT"}"""
+
+
+
     	pubnub.publish(CHANNEL, input_string)

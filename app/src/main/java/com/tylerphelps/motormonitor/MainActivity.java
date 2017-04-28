@@ -35,7 +35,6 @@ import android.view.ViewGroup;
 import android.view.MotionEvent;
 import java.util.Date;
 import android.support.v7.view.menu.ActionMenuItemView;
-import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
