@@ -155,8 +155,18 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void refreshData() {
-        Toast.makeText(getBaseContext(), "Refreshing Data...",
-                Toast.LENGTH_LONG).show();
+        try {
+            Toast.makeText(getBaseContext(), "Refreshing Data...",
+                    Toast.LENGTH_LONG).show();
+            NetworkController nc = new NetworkController(this.dc.getSensorModules().get(this.currentDisplayedModule));
+            System.out.println("========================================");
+            nc.requestData();
+            System.out.println("========================================");
+        }
+        catch (Exception e) {
+            Toast.makeText(getBaseContext(), "Error Fetching Data.",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     public void updateDataRangeToolbar(Date date1, Date date2) {

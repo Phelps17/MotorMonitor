@@ -1,21 +1,13 @@
 package com.tylerphelps.motormonitor;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import com.pubnub.api.callbacks.SubscribeCallback;
 import com.pubnub.api.PNConfiguration;
 import com.pubnub.api.PubNub;
+import com.pubnub.api.enums.PNStatusCategory;
 import com.pubnub.api.callbacks.PNCallback;
 import com.pubnub.api.models.consumer.PNPublishResult;
 import com.pubnub.api.models.consumer.PNStatus;
-
+import com.pubnub.api.models.consumer.pubsub.*;
 import java.util.ArrayList;
 
 /**
@@ -23,28 +15,38 @@ import java.util.ArrayList;
  */
 
 public class NetworkController {
-    private final String CHANNEL = "channel";
-    private final String PUB_KEY = "pub-c-169dbe41-99f9-4a69-b358-337bd5a0d24e";
-    private final String SUB_KEY = "sub-c-e32c8950-1351-11e7-9093-0619f8945a4f";
+    private final String PUB_KEY = "demo";
+    private final String SUB_KEY = "demo";
 
     private PubNub pubnub;
+    private SensorModule sm;
+    public ArrayList<String> responses;
 
-    public NetworkController() {
+    public NetworkController(SensorModule sm) {
+        this.sm = sm;
+        this.responses = new ArrayList<>();
         connect();
     }
 
-    public void sendMessage(String message) {
+    public String requestData() {
+        sendMessage("request", this.sm.getAccess_name());
+
+        return null;
+    }
+
+    public void sendMessage(String message, String channel) {
         this.pubnub.publish()
                 .message(message)
-                .channel(CHANNEL)
+                .channel(channel)
                 .shouldStore(true)
                 .usePOST(true)
                 .async(new PNCallback<PNPublishResult>() {
                     @Override
                     public void onResponse(PNPublishResult result, PNStatus status) {
                         if (status.isError()) {
-                            //TODO handle
+                            //TODO handle??
                         }
+                        System.out.println(result.toString());
                     }
                 });
     }
@@ -57,12 +59,39 @@ public class NetworkController {
         PNConfiguration pnConfiguration = new PNConfiguration();
         pnConfiguration.setSubscribeKey(PUB_KEY);
         pnConfiguration.setPublishKey(SUB_KEY);
-
         this.pubnub = new PubNub(pnConfiguration);
+
+        pubnub.addListener(new SubscribeCallback() {
+            @Override
+            public void message(PubNub pubnub, PNMessageResult message) {
+                responses.add(message.getMessage().toString());
+                System.out.println(1);
+            }
+
+            @Override
+            public void status(PubNub pubnub, PNStatus status) {
+                //None
+                System.out.println(2);
+            }
+
+            @Override
+            public void presence(PubNub pubnub, PNPresenceEventResult presence) {
+                //None
+                System.out.println(3);
+            }
+        });
+
+        ArrayList<String> channels = new ArrayList<>();
+        channels.add(sm.getAccess_name());
+        pubnub.subscribe().channels(channels);
     }
 
     private void disconnect() {
+        ArrayList<String> channels = new ArrayList<>();
+        channels.add(sm.getAccess_name());
+
         try {
+            pubnub.unsubscribe().channels(channels).execute();
             this.pubnub.disconnect();
         }
         catch (Exception e) {
