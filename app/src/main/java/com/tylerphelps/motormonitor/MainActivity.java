@@ -156,12 +156,18 @@ public class MainActivity extends AppCompatActivity
 
     private void refreshData() {
         try {
-            Toast.makeText(getBaseContext(), "Refreshing Data...",
-                    Toast.LENGTH_LONG).show();
-            NetworkController nc = new NetworkController(this.dc.getSensorModules().get(this.currentDisplayedModule));
-            System.out.println("========================================");
-            nc.requestData();
-            System.out.println("========================================");
+            if (this.dc.getSensorModules().get(this.currentDisplayedModule).getAccess_name().equals("sensor")) {
+                Toast.makeText(getBaseContext(), "Refreshing Data...",
+                        Toast.LENGTH_LONG).show();
+                NetworkController nc = new NetworkController(this.dc.getSensorModules().get(this.currentDisplayedModule), this.dc);
+                System.out.println("========================================");
+                nc.requestData();
+                System.out.println("========================================");
+                addDemoDataToModule(this.dc.getSensorModules().get(this.currentDisplayedModule));
+                refreshScreens(this.currentDisplayedModule);
+                showThumbnailScroller();
+            }
+            else throw new Exception();
         }
         catch (Exception e) {
             Toast.makeText(getBaseContext(), "Error Fetching Data.",
@@ -421,6 +427,20 @@ public class MainActivity extends AppCompatActivity
         else {
             Toast.makeText(getBaseContext(), "Demo is not available.",
                     Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void addDemoDataToModule(SensorModule sm) {
+        System.out.println("HERE");
+        this.dc.deleteDataEntryForModule(sm);
+
+        for (int i = 0; i < 50; i++) {
+            double vibration = 75 + (Math.cos(i/4) + (-0.5 + Math.random()));
+            double temperature = 80 + Math.sin(i/10) + (-0.5 + Math.random());
+            double current = 150 + Math.random()*10;
+            SensorDataEntry data = new SensorDataEntry((long) 0, sm.getAccess_name(), new Date(), (double) i, vibration, temperature, current);
+            data.setId(this.dc.getNextDataEntryId());
+            this.dc.addDataEntry(data);
         }
     }
 }

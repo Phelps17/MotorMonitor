@@ -9,6 +9,8 @@ import com.pubnub.api.models.consumer.PNPublishResult;
 import com.pubnub.api.models.consumer.PNStatus;
 import com.pubnub.api.models.consumer.pubsub.*;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by TylerPhelps on 3/27/17.
@@ -20,10 +22,12 @@ public class NetworkController {
 
     private PubNub pubnub;
     private SensorModule sm;
+    private DatabaseController dc;
     public ArrayList<String> responses;
 
-    public NetworkController(SensorModule sm) {
+    public NetworkController(SensorModule sm, DatabaseController dc) {
         this.sm = sm;
+        this.dc = dc;
         this.responses = new ArrayList<>();
         connect();
     }
@@ -34,7 +38,7 @@ public class NetworkController {
         return null;
     }
 
-    public void sendMessage(String message, String channel) {
+    public void sendMessage(final String message, String channel) {
         this.pubnub.publish()
                 .message(message)
                 .channel(channel)
@@ -44,9 +48,11 @@ public class NetworkController {
                     @Override
                     public void onResponse(PNPublishResult result, PNStatus status) {
                         if (status.isError()) {
-                            //TODO handle??
+                            // something bad happened.
+                            System.out.println("error happened while publishing: " + status.toString());
+                        } else {
+                            System.out.println("publish worked! timetoken: " + result.getTimetoken());
                         }
-                        System.out.println(result.toString());
                     }
                 });
     }
@@ -57,8 +63,8 @@ public class NetworkController {
 
     private void connect() {
         PNConfiguration pnConfiguration = new PNConfiguration();
-        pnConfiguration.setSubscribeKey(PUB_KEY);
-        pnConfiguration.setPublishKey(SUB_KEY);
+        pnConfiguration.setSubscribeKey(SUB_KEY);
+        pnConfiguration.setPublishKey(PUB_KEY);
         this.pubnub = new PubNub(pnConfiguration);
 
         pubnub.addListener(new SubscribeCallback() {

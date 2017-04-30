@@ -82,6 +82,7 @@ public class CompareGroupGraphs extends AppCompatActivity {
             DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
             series.setTitle(sm.getViewable_name());
+            series.setColor(Color.RED);
             graph.addSeries(series);
         }
         else {
@@ -118,6 +119,7 @@ public class CompareGroupGraphs extends AppCompatActivity {
             DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
             series.setTitle(sm.getViewable_name());
+            series.setColor(Color.RED);
             graph.addSeries(series);
         }
         else {
@@ -154,6 +156,7 @@ public class CompareGroupGraphs extends AppCompatActivity {
             DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
             series.setTitle(sm.getViewable_name());
+            series.setColor(Color.RED);
             graph.addSeries(series);
         }
         else {
