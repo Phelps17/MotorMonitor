@@ -412,10 +412,20 @@ public class MainActivity extends AppCompatActivity
             this.dc.addSensorModule(new SensorModule(this.dc.getNextSensorModuleId(), "76b733hfe0ue3", "12345", "Front Office AC", "", "No notes saved."));
 
             for (SensorModule module : dc.getSensorModules()) {
-                for (int i = 0; i < 250; i++) {
-                    double vibration = 75 + (Math.cos(i/4) + (-0.5 + Math.random()));
-                    double temperature = 80 + Math.sin(i/10) + (-0.5 + Math.random());
-                    double current = 150 + Math.random()*10;
+                double offset = Math.random()*10;
+                for (int i = 0; i < 100; i++) {
+                    double vibration = 75 + (Math.cos((i+offset)/4) + (-0.5 + Math.random()));
+                    double temperature = 80 + Math.sin((i+offset)/100) + (-0.5 + Math.random());
+                    double current = 150.0;
+                    if (i%(50+(int)offset) ==0) {
+                        current = 200 + Math.random()*10;
+                    }
+                    else if (i%(50-(int)offset) ==0) {
+                        current = 180 + Math.random()*10;
+                    }
+                    else {
+                        current = 150 + Math.random()*10;
+                    }
                     SensorDataEntry data = new SensorDataEntry((long) 0, module.getAccess_name(), new Date(), (double) i, vibration, temperature, current);
                     data.setId(this.dc.getNextDataEntryId());
                     this.dc.addDataEntry(data);

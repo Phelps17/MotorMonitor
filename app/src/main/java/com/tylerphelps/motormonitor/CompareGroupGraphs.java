@@ -82,7 +82,7 @@ public class CompareGroupGraphs extends AppCompatActivity {
             DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
             series.setTitle(sm.getViewable_name());
-            series.setColor(Color.RED);
+            //series.setColor(Color.RED);
             graph.addSeries(series);
         }
         else {
@@ -98,9 +98,9 @@ public class CompareGroupGraphs extends AppCompatActivity {
                     if (!module.equals(sm)) {
                         series.setColor(Color.GRAY);
                     }
-                    else {
+                    /*(else {
                         series.setColor(Color.RED);
-                    }
+                    }*/
                     graph.addSeries(series);
                 }
             }
@@ -119,7 +119,7 @@ public class CompareGroupGraphs extends AppCompatActivity {
             DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
             series.setTitle(sm.getViewable_name());
-            series.setColor(Color.RED);
+            //series.setColor(Color.RED);
             graph.addSeries(series);
         }
         else {
@@ -135,9 +135,9 @@ public class CompareGroupGraphs extends AppCompatActivity {
                     if (!module.equals(sm)) {
                         series.setColor(Color.GRAY);
                     }
-                    else {
+                    /*else {
                         series.setColor(Color.RED);
-                    }
+                    }*/
                     graph.addSeries(series);
                 }
             }
@@ -156,7 +156,7 @@ public class CompareGroupGraphs extends AppCompatActivity {
             DataPoint [] graphDataArray = graphData.toArray(new DataPoint[graphData.size()]);
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphDataArray);
             series.setTitle(sm.getViewable_name());
-            series.setColor(Color.RED);
+            //series.setColor(Color.RED);
             graph.addSeries(series);
         }
         else {
@@ -172,9 +172,9 @@ public class CompareGroupGraphs extends AppCompatActivity {
                     if (!module.equals(sm)) {
                         series.setColor(Color.GRAY);
                     }
-                    else {
+                    /*else {
                         series.setColor(Color.RED);
-                    }
+                    }*/
                     graph.addSeries(series);
                 }
             }
